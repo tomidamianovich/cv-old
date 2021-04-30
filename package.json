@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "start-project": "mongod && cd ./backend && npm run dev && cd ./frontend && npm run start"
+  }
+}

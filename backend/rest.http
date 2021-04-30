@@ -1,0 +1,21 @@
+POST  http://localhost:8000/api/education HTTP/1.1
+content-type: application/json
+
+{
+  "degree": "Ingeniero en sistemas de Información",
+  "description": "Finalizado, titulo en proceso de expedición por parte del ministerio de Educación.",
+  "startDate": "2013-01-01T00:00:00.244Z",
+  "endDate": "2019-04-01T00:00:00.244Z",
+  "place_id": "6084cc11ad933d1fce1fa653",
+  "person_id": "60842c7723c9232d9ad495af"
+}
+
+###
+POST  http://localhost:8000/api/place HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Udemy Courses",
+  "image": "https://logodownload.org/wp-content/uploads/2019/07/udemy-logo-0.png"
+}
+
