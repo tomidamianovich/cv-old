@@ -1,5 +1,10 @@
 {
   "scripts": {
-    "start-project": "mongod && cd ./backend && npm run dev && cd ./frontend && npm run start"
+    "start-project": "mongod && cd ./backend && npm run dev && cd ./frontend && npm run start",
+    "start": "node backend/src/index.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install npm && run build"
+  },
+  "engines": {
+    "node": "14.16.1"
   }
 }
