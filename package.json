@@ -6,5 +6,8 @@
   },
   "engines": {
     "node": "14.16.1"
+  },
+  "devDependencies": {
+    "@types/styled-components": "^5.1.9"
   }
 }
