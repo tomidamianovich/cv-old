@@ -9,12 +9,43 @@ const BASE_URL_API_PATHS = {
   EXPERIENCE: "experience",
   EDUCATION: "education",
 };
+const MONTHS = {
+  "es": [
+    'Enero',
+    'Febreo',
+    'Marzo',
+    'Abril',
+    'Mayo',
+    'Junio',
+    'Julio',
+    'Agosto',
+    'Septiembre',
+    'Octubre',
+    'Noviembre',
+    'Diciembre'
+  ],
+  "en": [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+  ]
+}
 
 const CONSTANTS = {
   APP_NAME,
   BASE_URL,
   BASE_URL_API,
   BASE_URL_API_PATHS,
+  MONTHS
 };
 
 export default CONSTANTS;

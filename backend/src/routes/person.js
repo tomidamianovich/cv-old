@@ -2,15 +2,15 @@ const { Router } = require('express');
 const router = Router();
 
 const {
-	getPersons, createPerson, getPerson, updatePerson, deletePerson 
+	getPerson, createPerson, getPersonById, updatePerson, deletePerson 
 } = require('../controllers/person.controller')
 
 router.route('/')
-	.get(getPersons)
+	.get(getPerson)
 	.post(createPerson);
 
 router.route('/:id')
-	.get(getPerson)
+	.get(getPersonById)
 	.put(updatePerson)
 	.delete(deletePerson)
 

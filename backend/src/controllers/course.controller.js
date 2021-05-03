@@ -8,12 +8,13 @@ courseCtrl.getCourse = async (req, res) => {
 	let place;
 	for (const course of courses) {
 		place = await Place.findOne({ "_id": course.place_id });
-		const { name, description, date, id } = course
+		const { name, description, date, id, person_id } = course
 		coursesWithPlace = [...coursesWithPlace, {
 			id,
 			name,
       description,
       date,
+			person_id,
 			...place && {
 				place: {
 					name: place.name,

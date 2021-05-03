@@ -1,16 +1,14 @@
 import { CourseDataType, EducationDataType, ExperienceDataType, PersonalDataType, SkillDataType } from "../../utils/type";
 import actionTypes from "../actionsTypes/StoreTypes";
 
-// case actionTypes.SET_PERSON_ID:
-//     case actionTypes.SET_PERSONAL_DATA:
-//     case actionTypes.SET_SOCIAL_DATA:
-//     case actionTypes.SET_EDUCATION_DATA:
-//     case actionTypes.SET_COURSE_DATA:
-//     case actionTypes.SET_SKILL_DATA:
-
 type PersonIdAction = {
   type: string;
   payload: string;
+};
+
+type PersonDataAction = {
+  type: string;
+  payload: PersonalDataType;
 };
 
 type PersonalDataAction = {
@@ -42,6 +40,14 @@ type SkillDataAction = {
 export function setPersonId(payload: PersonIdAction["payload"]) {
   const action: PersonIdAction = {
     type: actionTypes.SET_PERSON_ID,
+    payload,
+  };
+  return action;
+}
+
+export function setPersonData(payload: PersonDataAction["payload"]) {
+  const action: PersonDataAction = {
+    type: actionTypes.SET_PERSON_DATA,
     payload,
   };
   return action;

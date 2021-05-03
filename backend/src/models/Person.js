@@ -1,6 +1,13 @@
 const { Schema, model } = require('mongoose');
 
 const personSchema = new Schema({
+  language: {
+    type: String,
+    required: true
+  },
+  prefix: {
+    type: String,
+  },
   name: {
     type: String,
     required: true
@@ -24,6 +31,10 @@ const personSchema = new Schema({
   },
   profilePhoto: {
     type: String
+  },
+  description: {
+    type: String,
+    required: true
   }
 }, {
   timestamp: true

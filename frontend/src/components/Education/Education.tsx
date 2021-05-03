@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { EducationDataType, StoreType } from "../../utils/type";
-import { handleRequest } from "../../utils/handlers";
+import { handleRequest, getFormattedDate } from "../../utils/handlers";
 import CONSTANTS from "../../utils/constants";
 import withSectionItemHOC from "../withSectionItemHOC";
 import AsyncLoading from "../AsyncLoading";
+import ListItem from "../ListItem";
 import { useSelector, useDispatch } from "react-redux";
 import { setEducationalData } from "../../redux/actions/actions";
 
@@ -36,13 +37,13 @@ export const Education: React.FC<Props> = () => {
   const EducationDetails: React.FC<EducationDetailsProps> = ({ job }) => {
     const { degree, description, startDate, endDate, place } = job;
     return (
-      <>
-        <p>{degree}</p>
-        <p>{description}</p>
-        <p>{startDate}</p>
-        <p>{endDate}</p>
-        <p>{place.name}</p>
-      </>
+      <ListItem
+        imageValue={place.image}
+        imageName={place.name}
+        title={ `${degree} (${description}) ` }
+        subtitle={ `${getFormattedDate(startDate)} - ${getFormattedDate(endDate)}` }
+        description={place.name}
+      />
     );
   };
 

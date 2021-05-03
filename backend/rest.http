@@ -1,14 +1,71 @@
-POST  http://localhost:8000/api/education HTTP/1.1
+PUT http://localhost:8000/api/skill/60857213fce4b45fc2975d84  HTTP/1.1
 content-type: application/json
 
 {
-  "degree": "Ingeniero en sistemas de Información",
-  "description": "Finalizado, titulo en proceso de expedición por parte del ministerio de Educación.",
-  "startDate": "2013-01-01T00:00:00.244Z",
-  "endDate": "2019-04-01T00:00:00.244Z",
-  "place_id": "6084cc11ad933d1fce1fa653",
-  "person_id": "60842c7723c9232d9ad495af"
+  "person_id": "608ddef77cbd8c5258d93da6",
+"percentage": 75,
+"name": "English"
 }
+
+###
+
+POST http://localhost:8000/api/place HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Mercadolibre",
+  "image": "https://http2.mlstatic.com/frontend-assets/ui-navigation/5.14.4/mercadolibre/logo__small.png"
+}
+
+
+###
+
+PUT   http://localhost:8000/api/social/608ddef77cbd8c5258d93da6 HTTP/1.1
+content-type: application/json
+
+{
+  "instagram": "https://www.instagram.com/tomidamianovich",
+  "facebook": "https://www.facebook.com/tomasdamianovich",
+  "telephone": "+5492216261952",
+  "mail": "tomasdamianovich@gmail.com",
+  "linkedIn": "https://www.linkedin.com/in/tomasdr",
+  "person_id": "608ddef77cbd8c5258d93da6"
+}
+
+
+###
+
+PUT   http://localhost:8000/api/experience/608de8728bfc2a5c5847ede6 HTTP/1.1
+content-type: application/json
+
+{
+  "jobTitle": "Senior Front End Engineer",
+  "jobDescription": "REACT, STYLED COMPONENTS, JEST, NODE, BEM, STORYBOOK",
+  "startDate": "2021-05-17T00:00:00.244Z",
+  "endDate": "2021-05-17T00:00:00.244Z",
+  "person_id": "608ddef77cbd8c5258d93da6",
+  "place_id": "608de7578bfc2a5c5847ede2"
+}
+
+###
+
+PUT   http://localhost:8000/api/experience/608de8728bfc2a5c5847ede6 HTTP/1.1
+content-type: application/json
+
+{
+  "jobTitle": "Senior Front End Engineer",
+  "jobDescription": "REACT, STYLED COMPONENTS, JEST, NODE, BEM, STORYBOOK",
+  "startDate": "2021-05-17T00:00:00.244Z",
+  "endDate": "2021-05-17T00:00:00.244Z",
+  "person_id": "608ddef77cbd8c5258d93da6",
+  "place_id": "608de7578bfc2a5c5847ede2"
+}
+
+### 
+
+DELETE   http://localhost:8000/api/experience/6084dbdc6031042cbd99b820 HTTP/1.1
+content-type: application/json
+
 
 ###
 POST  http://localhost:8000/api/place HTTP/1.1

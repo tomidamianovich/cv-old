@@ -65,7 +65,7 @@ skillCtrl.updateSkill = async (req, res) => {
 	const {
 		name,
     percentage,
-    id
+    person_id
   } = req.body;
 	await Skill.findByIdAndUpdate({
 		_id: req.params.id
@@ -73,7 +73,6 @@ skillCtrl.updateSkill = async (req, res) => {
 		{
 			name,
       percentage,
-      id,
       person_id
 		}, (err, result) =>
 		res.json({ message: err ? 'Error' : 'Skill Updated' })

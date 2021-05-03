@@ -55,19 +55,8 @@ experienceCtrl.getExperienceByPersonId = async (req, res) => {
 }
 
 experienceCtrl.createExperience = async (req, res) => {
-	const {
-		jobTitle,
-		startDate,
-		endDate,
-		jobDescription,
-		place_id } = req.body;
-	const newExperience = new Experience({
-		jobTitle,
-		startDate,
-		endDate,
-		jobDescription,
-		place_id
-	})
+	const experience = req.body;
+	const newExperience = new Experience(experience)
 	await newExperience.save();
 	res.json({
 		message: 'Experience Saved.'

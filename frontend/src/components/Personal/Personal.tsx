@@ -1,55 +1,71 @@
-import React, { useEffect, useState } from "react";
-import { handleRequest } from "../../utils/handlers";
+import React from "react";
 import withSectionItemHOC from "../withSectionItemHOC";
-import CONSTANTS from "../../utils/constants";
 import { StoreType, PersonalDataType } from "../../utils/type";
-import AsyncLoading from "../AsyncLoading";
-import { setPersonalData } from "../../redux/actions/actions";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import styled from "styled-components";
+
+const Item = styled.span`
+  width: 100%;
+  color: #554949;
+  span:first-child {
+    font-weight: 400;
+    font-size: 1.2rem;
+  }
+  span:not(:first-child) {
+    font-size: 1  rem;
+    font-weight: 200;
+  }
+  @media (min-width:801px) {
+    flex: 48%;
+    padding: 1rem 0 1rem 2%;
+  }
+  @media (max-width:801px) {
+    padding: 1rem 0;
+  }
+`;
+
+const ItemContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
 
 type Props = {};
 
 const Personal: React.FC<Props> = () => {
-  const dispatch = useDispatch();
-  const personId: string = useSelector((state: StoreType) => state.personId);
   const personalData: PersonalDataType = useSelector(
-    (state: StoreType) => state.personalData
+    (state: StoreType) => state.personData
   );
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<boolean>(false);
-
-  useEffect(() => {
-    if (personalData) {
-      setLoading(false);
-      return;
-    }
-    handleRequest(CONSTANTS.BASE_URL_API_PATHS.PERSONAL_DATA, personId)
-      .then((response) => dispatch(setPersonalData(response.data)))
-      .catch(() => setError(true))
-      .finally(() => setLoading(false));
-  }, [personId, dispatch, personalData]);
 
   const PersonalInfo: React.FC<{
-    data: PersonalDataType | undefined;
+    data: PersonalDataType;
   }> = ({ data }) => {
     if (!data) return null;
-    const { name, lastname, age, civilStatus, profilePhoto, location } = data;
+    const { name, lastname, age, civilStatus, locationName } = data;
+
+    type ItemBodyProps = {
+      title: string;
+      value: string;
+    };
+
+    const ItemWithBody: React.FC<ItemBodyProps> = ({ title, value }) => (
+      <Item>
+        <span>{title}: </span>
+        <span>{value}</span>
+      </Item>
+    );
+
     return (
-      <>
-        <p> {name} </p>
-        <p> {lastname} </p>
-        <p> {age} </p>
-        <p> {civilStatus} </p>
-        <p> {profilePhoto} </p>
-        <p> {location.name} </p>
-      </>
+      <ItemContainer>
+        <ItemWithBody title="Nombre" value={`${name} ${lastname}`} />
+        <ItemWithBody title="Edad" value={`${age} años`} />
+        <ItemWithBody title="Estado Civil" value={civilStatus} />
+        <ItemWithBody title="Lugar de residencia" value={locationName} />
+      </ItemContainer>
     );
   };
 
   return (
-    <AsyncLoading isLoading={loading} hasError={error}>
-      <PersonalInfo data={personalData} />
-    </AsyncLoading>
+    <PersonalInfo data={personalData} />
   );
 };
 

@@ -9,6 +9,14 @@ export function setPersonId(payload: StoreType) {
   return action;
 }
 
+export function setPersonData(payload: StoreType) {
+  const action: StoreAction = {
+    type: actionTypes.SET_PERSON_DATA,
+    payload,
+  };
+  return action;
+}
+
 export function setPersonalData(payload: StoreAction["payload"]) {
   const action: StoreAction = {
     type: actionTypes.SET_PERSONAL_DATA,

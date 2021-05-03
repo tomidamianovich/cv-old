@@ -8,7 +8,7 @@ educationCtrl.getEducation = async (req, res) => {
 	let place;
 	for (const education of educations) {
 		place = await Place.findOne({ "_id": education.place_id });
-    const { degree, description, startDate, endDate, place_id, person_id } = education
+    const { degree, description, startDate, endDate, place_id, person_id, _id } = education
 		educationsWithPlace = [...educationsWithPlace, {
 			degree,
       description,
@@ -16,6 +16,7 @@ educationCtrl.getEducation = async (req, res) => {
       endDate,
       place_id,
       person_id,
+			_id,
 			...place && {
 				place: {
 					name: place.name,

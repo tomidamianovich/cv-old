@@ -5,16 +5,28 @@ export type placeType = {
   image: string;
 };
 
+const TYPES = ['es', 'en'] as const;
+export type LanguageType = typeof TYPES[number];
+
+export type ListItemDetailsType = {
+  imageName: string;
+  imageValue: string;
+  title: string;
+  subtitle: string;
+  description: string;
+}
+
 export type PersonalDataType = {
+  prefix: string;
+  description: string;
   name: string;
   lastname: string;
   age: number;
   civilStatus: string;
-  location: {
-    name: string;
-    value: string;
-  };
+  locationName: string;
+  locationValue: string;
   profilePhoto: string;
+  experience: any;
   social: SocialDataType;
 };
 
@@ -73,6 +85,7 @@ export type StoreAction = {
 
 export type StoreType = {
   personId: string,
+  personData: PersonalDataType,
   personalData: PersonalDataType,
   courseData: CourseDataType[],
   educationalData: EducationDataType[],

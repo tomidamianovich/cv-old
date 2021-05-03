@@ -13,6 +13,11 @@ const reducer = (
         ...state,
         personId: action.payload
       };
+    case actionTypes.SET_PERSON_DATA:
+      return {
+        ...state,
+        personData: action.payload
+      };
     case actionTypes.SET_PERSONAL_DATA:
       return {
         ...state,

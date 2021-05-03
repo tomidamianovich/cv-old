@@ -1,30 +1,47 @@
 const personsCtrl = {};
 const Person = require('../models/Person');
-const Social = require('../models/Social');
+const Experience = require('../models/Experience');
+const Place = require('../models/Place');
 
-personsCtrl.getPersons = async (req, res) => {
-	const person = await Person.findOne();
-	res.json(person);
+personsCtrl.getPerson = async (req, res) => {
+	const person = await Person.findOne({ language: 'es' });
+	const experience = await Experience.findOne({"person_id": person._id}).sort("-endDate");
+	const place = await Place.findOne({"_id": experience.place_id})
+	const {
+		_id,
+		language,
+		prefix,
+		name,
+		birthdate,
+		lastname,
+		civilStatus,
+		locationName,
+		locationValue,
+		profilePhoto,
+		description
+	} = person
+	res.json({
+		_id,
+		language,
+		prefix,
+		name,
+		lastname,
+		civilStatus,
+		locationName,
+		locationValue,
+		profilePhoto,
+		description,
+		age: calculateAge(birthdate),
+		experience: {
+			title: experience.jobTitle,
+			place: place.name
+		}
+	});
 };
 
 personsCtrl.createPerson = async (req, res) => {
-	const { 
-		name,
-		lastname,
-		civilStatus,
-		birthdate,
-		locationName,
-		locationValue,
-  	profilePhoto } = req.body;
-	const newPerson = new Person({
-		name,
-		lastname,
-		civilStatus,
-		birthdate,
-		locationName,
-		locationValue,
-  	profilePhoto
-	})
+	const person = req.body;
+	const newPerson = new Person(person)
 	await newPerson.save();
 	res.json({
 		message: 'Person Created.'
@@ -37,9 +54,8 @@ const calculateAge = (birthday) => {
 	return Math.abs(ageDate.getUTCFullYear() - 1970);
 }
 
-personsCtrl.getPerson = async (req, res) => {
+personsCtrl.getPersonById = async (req, res) => {
 	const person = await Person.findById(req.params.id);
-	const social = await Social.findOne({"person_id": req.params.id});
 	const {
 		name, lastname, birthdate, civilStatus, locationName, locationValue, profilePhoto 
 	} = person
@@ -52,20 +68,37 @@ personsCtrl.getPerson = async (req, res) => {
 			name: locationName,
 			value: locationValue,
 		},
-		profilePhoto,
-		social
+		profilePhoto
 	});
 }
 
 personsCtrl.updatePerson = async (req, res) => {
 	const {
-		birthdate } = req.body;
-	console.log(birthdate)
-	await Social.findByIdAndUpdate({
+		language,
+  	prefix,
+  	name,
+  	lastname,
+  	civilStatus,
+  	birthdate,
+  	locationName,
+  	locationValue,
+  	profilePhoto,
+  	description
+	} = req.body;
+	await Person.findByIdAndUpdate({
 		_id: req.params.id	
 	}, 
 	{
-		birthdate: "1994-12-26T00:00:00.244Z"
+		language,
+  	prefix,
+  	name,
+  	lastname,
+  	civilStatus,
+  	birthdate,
+  	locationName,
+  	locationValue,
+  	profilePhoto,
+  	description
 	}, (err, result) => 
 		res.json({ message: err ? 'Error' : 'Person Updated' })
 	);

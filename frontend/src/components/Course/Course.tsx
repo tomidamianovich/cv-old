@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { CourseDataType, StoreType } from "../../utils/type";
-import { handleRequest } from "../../utils/handlers";
+import { handleRequest, getFormattedDate } from "../../utils/handlers";
 import withSectionItemHOC from "../withSectionItemHOC";
+import ListItem from "../ListItem";
 import AsyncLoading from "../AsyncLoading";
 import CONSTANTS from "../../utils/constants";
 import { useSelector, useDispatch } from "react-redux";
@@ -35,14 +36,13 @@ export const Course: React.FC<Props> = () => {
 
   const CourseDetails: React.FC<CourseDetailsProps> = ({ course }) => {
     const { name, description, date, place } = course;
-    return (
-      <>
-        <p>{name}</p>
-        <p>{description}</p>
-        <p>{date}</p>
-        <p>{place.name}</p>
-      </>
-    );
+    return <ListItem
+      imageValue={place.image}
+      imageName={place.name}
+      title={name}
+      subtitle={ `${getFormattedDate(date)}` }
+      description={description}
+    />
   };
 
   return (

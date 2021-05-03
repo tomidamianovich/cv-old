@@ -29,7 +29,6 @@ socialCtrl.getSocialByPersonId = async (req, res) => {
 
 socialCtrl.updateSocial = async (req, res) => {
 	const { instagram, facebook, telephone, mail, linkedIn, person_id } = req.body;
-	console.log(person_id)
 	await Social.findByIdAndUpdate({
 		_id: req.params.id	
 	}, 
