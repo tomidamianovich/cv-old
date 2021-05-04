@@ -55,21 +55,27 @@ const calculateAge = (birthday) => {
 }
 
 personsCtrl.getPersonById = async (req, res) => {
-	const person = await Person.findById(req.params.id);
-	const {
-		name, lastname, birthdate, civilStatus, locationName, locationValue, profilePhoto 
-	} = person
-	res.json({
-		name,
-		lastname,
-		age: calculateAge(birthdate),
-		civilStatus,
-		location: {
-			name: locationName,
-			value: locationValue,
-		},
-		profilePhoto
-	});
+	try {
+    const person = await Person.findById(req.params.id);
+		const {
+			name, lastname, birthdate, civilStatus, locationName, locationValue, profilePhoto 
+		} = person
+		res.json({
+			name,
+			lastname,
+			age: calculateAge(birthdate),
+			civilStatus,
+			location: {
+				name: locationName,
+				value: locationValue,
+			},
+			profilePhoto
+		});
+	} catch (err) {
+		// handle the error safely
+		console.log(err)
+	}
+	
 }
 
 personsCtrl.updatePerson = async (req, res) => {
