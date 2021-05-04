@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const URI = "mongodb://localhost/cv";
+const URI = "mongodb+srv://tomasdamianovich:$$tdr@Cjd17055018@cvcluster.bu7rm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 mongoose.connect("mongodb://localhost/cv", {
 	useNewUrlParser: true,
