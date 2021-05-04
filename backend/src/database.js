@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const URI = "mongodb://localhost/cv";
 
-mongoose.connect(URI, {
+mongoose.connect("mongodb://localhost/cv", {
 	useNewUrlParser: true,
 	useCreateIndex: true,
 	useUnifiedTopology: true,
