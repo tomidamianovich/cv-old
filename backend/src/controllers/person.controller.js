@@ -57,6 +57,7 @@ const calculateAge = (birthday) => {
 personsCtrl.getPersonById = async (req, res) => {
 	try {
     const person = await Person.findById(req.params.id);
+		if !person return []
 		const {
 			name, lastname, birthdate, civilStatus, locationName, locationValue, profilePhoto 
 		} = person
