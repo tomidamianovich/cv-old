@@ -41,6 +41,10 @@ const App: React.FC<Props> = () => {
   useEffect(() => {
     handleRequest(CONSTANTS.BASE_URL_API_PATHS.PERSONAL_DATA)
       .then((response: any) => {
+        if (!("_id" in response.data)) {
+          setError(true)
+          return
+        }
         dispatch(setPersonId(response.data._id))
         dispatch(setPersonData(response.data))
       })

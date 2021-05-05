@@ -4,39 +4,45 @@ const Experience = require('../models/Experience');
 const Place = require('../models/Place');
 
 personsCtrl.getPerson = async (req, res) => {
-	const person = await Person.findOne({ language: 'es' });
-	const experience = await Experience.findOne({"person_id": person._id}).sort("-endDate");
-	const place = await Place.findOne({"_id": experience.place_id})
-	const {
-		_id,
-		language,
-		prefix,
-		name,
-		birthdate,
-		lastname,
-		civilStatus,
-		locationName,
-		locationValue,
-		profilePhoto,
-		description
-	} = person
-	res.json({
-		_id,
-		language,
-		prefix,
-		name,
-		lastname,
-		civilStatus,
-		locationName,
-		locationValue,
-		profilePhoto,
-		description,
-		age: calculateAge(birthdate),
-		experience: {
-			title: experience.jobTitle,
-			place: place.name
-		}
-	});
+	try {
+		const person = await Person.findOne({ language: 'es' });
+		if (!person) return res.status(200).json([]) 
+		const experience = await Experience.findOne({"person_id": person._id}).sort("-endDate");
+		const place = await Place.findOne({"_id": experience.place_id})
+		const {
+			_id,
+			language,
+			prefix,
+			name,
+			birthdate,
+			lastname,
+			civilStatus,
+			locationName,
+			locationValue,
+			profilePhoto,
+			description
+		} = person
+		res.json({
+			_id,
+			language,
+			prefix,
+			name,
+			lastname,
+			civilStatus,
+			locationName,
+			locationValue,
+			profilePhoto,
+			description,
+			age: calculateAge(birthdate),
+			experience: {
+				title: experience.jobTitle,
+				place: place.name
+			}
+		});
+	} catch (err) {
+		// handle the error safely
+		console.log(err+'asdasd')
+	}
 };
 
 personsCtrl.createPerson = async (req, res) => {
