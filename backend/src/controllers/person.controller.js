@@ -1,81 +1,44 @@
 const personsCtrl = {};
 const Person = require('../models/Person');
-const Experience = require('../models/Experience');
-const Place = require('../models/Place');
 
-personsCtrl.getPerson = async (req, res) => {
+personsCtrl.getPersonByLanguage = async (req, res) => {
 	try {
-		const person = await Person.findOne({ language: 'es' });
+		const person = await Person.findOne({ language: "lang" in req.params ? req.params.lang : "es" });
 		if (!person) {
-			return res.status(200).json([])
-		} else {
-			const {
-				_id,
-				language,
-				prefix,
-				name,
-				birthdate,
-				lastname,
-				civilStatus,
-				locationName,
-				locationValue,
-				profilePhoto,
-				description
-			} = person
+			res.status(404).json({
+				error: 'Person not found'
+			})
+	 	} else {
+			const { _id, language, prefix, name, birthdate, lastname, civilStatus, locationName,
+				locationValue, profilePhoto, description } = person
 			res.json({
 				_id,
 				language,
 				prefix,
 				name,
-				birthdate,
 				lastname,
 				civilStatus,
 				locationName,
 				locationValue,
 				profilePhoto,
-				description
+				description,
+				age: calculateAge(birthdate)
 			});
 		}
-		const experience = await Experience.findOne({"person_id": person._id}).sort("-endDate");
-		const place = await Place.findOne({"_id": experience.place_id})
-		const {
-			_id,
-			language,
-			prefix,
-			name,
-			birthdate,
-			lastname,
-			civilStatus,
-			locationName,
-			locationValue,
-			profilePhoto,
-			description
-		} = person
-		res.json({
-			_id,
-			language,
-			prefix,
-			name,
-			lastname,
-			civilStatus,
-			locationName,
-			locationValue,
-			profilePhoto,
-			description,
-			age: calculateAge(birthdate),
-			experience: {
-				title: experience.jobTitle,
-				place: place.name
-			}
-		});
 	} catch (err) {
-		// handle the error safely
-		console.log(err+'asdasd')
+		res.status(500).json({
+			error: "Error Found " + err
+		})
 	}
 };
 
 personsCtrl.createPerson = async (req, res) => {
 	const person = req.body;
+	if (!person) {
+		res.status(400).json({
+			error: 'Body should be passed in the request.'
+		})
+	}
 	const newPerson = new Person(person)
 	await newPerson.save();
 	res.json({
@@ -92,7 +55,9 @@ const calculateAge = (birthday) => {
 personsCtrl.getPersonById = async (req, res) => {
 	try {
     const person = await Person.findById(req.params.id);
-		if (!person) return res.json([])
+		if (!person) return res.status(404).json({
+			error: 'Person not found'
+		})
 		const {
 			name, lastname, birthdate, civilStatus, locationName, locationValue, profilePhoto 
 		} = person
@@ -108,8 +73,9 @@ personsCtrl.getPersonById = async (req, res) => {
 			profilePhoto
 		});
 	} catch (err) {
-		// handle the error safely
-		console.log(err)
+		res.status(500).json({
+			error: "Error Found " + err
+		})
 	}
 	
 }
