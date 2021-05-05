@@ -1,10 +1,17 @@
-PUT http://localhost:8000/api/skill/60857213fce4b45fc2975d84  HTTP/1.1
+POST http://localhost:8000/api/person  HTTP/1.1
 content-type: application/json
 
 {
-  "person_id": "608ddef77cbd8c5258d93da6",
-"percentage": 75,
-"name": "English"
+  "language": "es",
+"prefix": "Ing.",
+"name": "Tomás",
+"birthdate": "1994-12-26T00:00:00.244Z",
+"lastname": "Damianovich Reddy",
+"civilStatus": "Soltero",
+"locationName": "La Plata - Buenos Aires - Argentina",
+"locationValue": "https://goo.gl/maps/DoLRf9RWNgAFoKfR9",
+"profilePhoto": "https://firebasestorage.googleapis.com/v0/b/cvreact-43129.appspot.com/o/profile.jpg?alt=media&amp;token=e77b1d24-065b-4cf2-9a59-e7c646973d38",
+"description": "Me considero una persona responsable, dinamica, un poco detallista y con iniciativa. Siempre estoy en busqueda de aprender nuevos conocimientos y afrontar nuevos desafios que me permitan crecer en lo personal como asi también en lo profesional."
 }
 
 ###

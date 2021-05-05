@@ -6,7 +6,36 @@ const Place = require('../models/Place');
 personsCtrl.getPerson = async (req, res) => {
 	try {
 		const person = await Person.findOne({ language: 'es' });
-		if (!person) return res.status(200).json([]) 
+		if (!person) {
+			return res.status(200).json([])
+		} else {
+			const {
+				_id,
+				language,
+				prefix,
+				name,
+				birthdate,
+				lastname,
+				civilStatus,
+				locationName,
+				locationValue,
+				profilePhoto,
+				description
+			} = person
+			res.json({
+				_id,
+				language,
+				prefix,
+				name,
+				birthdate,
+				lastname,
+				civilStatus,
+				locationName,
+				locationValue,
+				profilePhoto,
+				description
+			});
+		}
 		const experience = await Experience.findOne({"person_id": person._id}).sort("-endDate");
 		const place = await Place.findOne({"_id": experience.place_id})
 		const {
