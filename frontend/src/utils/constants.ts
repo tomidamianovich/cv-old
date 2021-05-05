@@ -1,5 +1,5 @@
 const APP_NAME = "CV";
-const BASE_URL = "/";
+const BASE_URL = "https://glacial-mesa-61165.herokuapp.com/";
 const BASE_URL_API = `${BASE_URL}api/`;
 const BASE_URL_API_PATHS = {
   PERSONAL_DATA: "person",

@@ -41,6 +41,7 @@ const App: React.FC<Props> = () => {
   useEffect(() => {
     handleRequest(CONSTANTS.BASE_URL_API_PATHS.PERSONAL_DATA)
       .then((response: any) => {
+        debugger
         if (!("_id" in response.data)) {
           setError(true)
           return
