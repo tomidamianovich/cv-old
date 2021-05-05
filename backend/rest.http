@@ -16,11 +16,12 @@ content-type: application/json
 
 ###
 
-POST  http://localhost:8000/api/person  HTTP/1.1
+POST http://localhost:8000/api/experience  HTTP/1.1
 content-type: application/json
 
 {
-  
+  "name": "Mercadolibre",
+"image": "https://http2.mlstatic.com/frontend-assets/ui-navigation/5.14.4/mercadolibre/logo__small.png"
 }
 
 ###

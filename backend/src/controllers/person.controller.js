@@ -77,7 +77,6 @@ personsCtrl.getPersonById = async (req, res) => {
 			error: "Error Found " + err
 		})
 	}
-	
 }
 
 personsCtrl.updatePerson = async (req, res) => {

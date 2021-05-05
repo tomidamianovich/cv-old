@@ -1,10 +1,15 @@
 const placesCtrl = {};
 const Place = require('../models/Place');
-const Social = require('../models/Social');
 
 placesCtrl.getPlaces = async (req, res) => {
-	const place = await Place.find();
-	res.json(place);
+	try {
+		const place = await Place.find();
+		res.status(200).json(place);
+	} catch (err) {
+		res.status(500).json({
+			error: "Error Found " + err
+		})
+	}
 };
 
 placesCtrl.createPlace = async (req, res) => {
@@ -17,8 +22,8 @@ placesCtrl.createPlace = async (req, res) => {
 }
 
 placesCtrl.getPlaceByPersonId = async (req, res) => {
-	const place = await Place.find(place => place.person_id === req.params.person_id)
-	res.json(place);
+	const place = await Place.find({ person_id: req.params.person_id })
+	res.status(200).json(place);
 }
 
 placesCtrl.deletePlace = async (req, res) => {
