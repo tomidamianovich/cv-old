@@ -13,10 +13,12 @@ personsCtrl.getPersonByLanguage = async (req, res) => {
 	 	} else {
 			const { _id, language, prefix, name, birthdate, lastname, civilStatus, locationName,
 				locationValue, profilePhoto, description } = person
-			console.log()
 			const experience = await Experience.findOne({"person_id": _id}).sort("-endDate");
-			const place = await Place.findOne({"_id": experience.place_id})
-			res.json({
+			let place
+			if (experience) {
+				place = await Place.findOne({"_id": experience.place_id})
+			}
+			res.status(200).json({
 				_id,
 				language,
 				prefix,
@@ -31,7 +33,9 @@ personsCtrl.getPersonByLanguage = async (req, res) => {
 				...(experience && {
 					experience: {
 						title: experience.jobTitle,
-						place: place.name
+						...(place && {
+							place: place.name
+						})
 					}
 				})
 			});
@@ -52,7 +56,7 @@ personsCtrl.createPerson = async (req, res) => {
 	}
 	const newPerson = new Person(person)
 	await newPerson.save();
-	res.json({
+	res.status(200).json({
 		message: 'Person Created.'
 	})
 }
@@ -72,7 +76,7 @@ personsCtrl.getPersonById = async (req, res) => {
 		const {
 			name, lastname, birthdate, civilStatus, locationName, locationValue, profilePhoto 
 		} = person
-		res.json({
+		res.status(200).json({
 			name,
 			lastname,
 			age: calculateAge(birthdate),
@@ -91,42 +95,54 @@ personsCtrl.getPersonById = async (req, res) => {
 }
 
 personsCtrl.updatePerson = async (req, res) => {
-	const {
-		language,
-  	prefix,
-  	name,
-  	lastname,
-  	civilStatus,
-  	birthdate,
-  	locationName,
-  	locationValue,
-  	profilePhoto,
-  	description
-	} = req.body;
-	await Person.findByIdAndUpdate({
-		_id: req.params.id	
-	}, 
-	{
-		language,
-  	prefix,
-  	name,
-  	lastname,
-  	civilStatus,
-  	birthdate,
-  	locationName,
-  	locationValue,
-  	profilePhoto,
-  	description
-	}, (err, result) => 
-		res.json({ message: err ? 'Error' : 'Person Updated' })
-	);
+	try {
+		const {
+			language,
+			prefix,
+			name,
+			lastname,
+			civilStatus,
+			birthdate,
+			locationName,
+			locationValue,
+			profilePhoto,
+			description
+		} = req.body;
+		await Person.findByIdAndUpdate({
+			_id: req.params.id	
+		}, 
+		{
+			language,
+			prefix,
+			name,
+			lastname,
+			civilStatus,
+			birthdate,
+			locationName,
+			locationValue,
+			profilePhoto,
+			description
+		}, (err, result) => 
+			res.status(200).json({ message: err ? 'Error' : 'Person Updated' })
+		);
+	} catch (err) {
+		res.status(500).json({
+			error: "Error Found " + err
+		})
+	}
 }
 
 personsCtrl.deletePerson = async (req, res) => {
-	await Person.findByIdAndDelete(req.params.id);
-	res.json({
-		message: 'Person Deleted'
-	});
+	try {
+		await Person.findByIdAndDelete(req.params.id);
+		res.status(200).json({
+			message: 'Person Deleted'
+		});
+	} catch (err) {
+		res.status(500).json({
+			error: "Error Found " + err
+		})
+	}
 }
 
 module.exports = personsCtrl;

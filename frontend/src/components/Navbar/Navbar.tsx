@@ -77,7 +77,7 @@ const Navbar: React.FC<Props> = () => {
     <AsyncLoading isLoading={loading} hasError={error}>
       <Wrapper>
         <PhotoWrapper>
-          <img src={personalData.profilePhoto} alt="Profile" />
+          <img src={process.env.PUBLIC_URL + '/images/profile-picture.jpeg'} alt="Profile" />
         </PhotoWrapper>
         <InfoWrapper>
           <InfoTitle>{prefix} {lastname} {name}</InfoTitle>

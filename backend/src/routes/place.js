@@ -2,7 +2,7 @@ const { Router } = require('express');
 const router = Router();
 
 const {
-	getPlaces, createPlace, getPlaceByPersonId, deletePlace
+	getPlaces, createPlace, updatePlace, deletePlace
 } = require('../controllers/place.controller')
 
 router.route('/')
@@ -10,7 +10,7 @@ router.route('/')
 	.post(createPlace);
 
 router.route('/:id')
-	.get(getPlaceByPersonId)
+	.put(updatePlace)
 	.delete(deletePlace)
 
 module.exports = router;

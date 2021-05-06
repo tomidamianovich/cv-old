@@ -16,24 +16,26 @@ content-type: application/json
 
 ###
 
-POST http://localhost:8000/api/experience  HTTP/1.1
+POST https://glacial-mesa-61165.herokuapp.com/api/skill  HTTP/1.1
 content-type: application/json
 
 {
-  "name": "Mercadolibre",
-"image": "https://http2.mlstatic.com/frontend-assets/ui-navigation/5.14.4/mercadolibre/logo__small.png"
+  "person_id": "60927d23c4dbd94394299dae",
+ "percentage": 75,
+"name": "English"
 }
 
 ###
+DELETE  https://glacial-mesa-61165.herokuapp.com/api/place/60933a6a2290450004373d13
 
-POST http://localhost:8000/api/place HTTP/1.1
+### 
+PUT http://localhost:8000/api/place/6092ad9f1809fe098bc68215 HTTP/1.1
 content-type: application/json
 
 {
-  "name": "Mercadolibre",
-  "image": "https://http2.mlstatic.com/frontend-assets/ui-navigation/5.14.4/mercadolibre/logo__small.png"
+  "name": "GlobalLogic",
+  "image": "globallogic.jpeg"
 }
-
 
 ###
 
@@ -49,8 +51,12 @@ content-type: application/json
   "person_id": "608ddef77cbd8c5258d93da6"
 }
 
+###
+
+DELETE https://glacial-mesa-61165.herokuapp.com/api/course/609316b72290450004373d08 HTTP/1.1
 
 ###
+
 
 PUT   http://localhost:8000/api/experience/608de8728bfc2a5c5847ede6 HTTP/1.1
 content-type: application/json

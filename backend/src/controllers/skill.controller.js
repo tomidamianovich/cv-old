@@ -21,7 +21,7 @@ skillCtrl.getSkill = async (req, res) => {
 			}
 		}]
 	}
-	res.json(skillsWithPlace);
+	res.status(200).json(skillsWithPlace);
 };
 
 skillCtrl.getSkillByPersonId = async (req, res) => {
@@ -45,7 +45,7 @@ skillCtrl.getSkillByPersonId = async (req, res) => {
 			}
 		}]
 	}
-	res.json(skillsWithPlace);
+	res.status(200).json(skillsWithPlace);
 }
 
 skillCtrl.createSkill = async (req, res) => {
@@ -56,7 +56,7 @@ skillCtrl.createSkill = async (req, res) => {
     person_id
 	})
 	await newSkill.save();
-	res.json({
+	res.status(200).json({
 		message: 'Skill Saved.'
 	})
 }
@@ -75,13 +75,13 @@ skillCtrl.updateSkill = async (req, res) => {
       percentage,
       person_id
 		}, (err, result) =>
-		res.json({ message: err ? 'Error' : 'Skill Updated' })
+		res.status(200).json({ message: err ? 'Error' : 'Skill Updated' })
 	);
 }
 
 skillCtrl.deleteSkill = async (req, res) => {
 	await Skill.findByIdAndDelete(req.params.id);
-	res.json({
+	res.status(200).json({
 		message: 'Skill Deleted'
 	});
 }

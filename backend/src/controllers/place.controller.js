@@ -13,24 +13,52 @@ placesCtrl.getPlaces = async (req, res) => {
 };
 
 placesCtrl.createPlace = async (req, res) => {
-	const { name, image } = req.body;
-	const newPlace = new Place({ name, image })
-	await newPlace.save();
-	res.json({
-		message: 'Place Created.'
-	})
+	try {
+		const { name, image } = req.body;
+		const newPlace = new Place({ name, image })
+		await newPlace.save();
+		res.status(200).json({
+			message: 'Place Created.'
+		})
+	} catch (err) {
+		res.status(500).json({
+			error: "Error Found " + err
+		})
+	}
 }
 
-placesCtrl.getPlaceByPersonId = async (req, res) => {
-	const place = await Place.find({ person_id: req.params.person_id })
-	res.status(200).json(place);
+placesCtrl.updatePlace = async (req, res) => {
+	try {	
+		const {
+			name,
+			image
+		} = req.body;
+		await Place.findByIdAndUpdate({
+			_id: req.params.id
+		}, {
+				name,
+				image
+			}, (err, result) =>
+			res.status(200).json({ message: err ? err : 'Place Updated' })
+		);
+	} catch (err) {
+		res.status(500).json({
+			error: "Error Found " + err
+		})
+	}
 }
 
 placesCtrl.deletePlace = async (req, res) => {
-	await Place.findByIdAndDelete(req.params.id);
-	res.json({
-		message: 'Place Deleted'
-	});
+	try {
+		await Place.findByIdAndDelete(req.params.id);
+		res.status(200).json({
+			message: 'Place Deleted'
+		});
+	} catch (err) {
+		res.status(500).json({
+			error: "Error Found " + err
+		})
+	}
 }
 
 module.exports = placesCtrl;

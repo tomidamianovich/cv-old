@@ -59,7 +59,7 @@ export const ListItem: React.FC<Props> = ({
   return (
     <Wrapper>
       <PhotoWrapper>
-        <img src={imageValue} alt={imageName} />
+        <img src={process.env.PUBLIC_URL + '/images/places/' + imageValue } alt="Profile" />
       </PhotoWrapper>
       <InfoWrapper>
         <InfoTitle>{title}</InfoTitle>
