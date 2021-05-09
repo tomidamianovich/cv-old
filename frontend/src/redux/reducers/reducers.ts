@@ -1,7 +1,6 @@
 import actionTypes from "../actionsTypes/StoreTypes";
 import { StoreType, StoreAction } from "../../utils/type";
-
-var initialState: StoreType;
+import { initialState } from '../initialState'
 
 const reducer = (
   state: StoreType = initialState,
@@ -46,7 +45,7 @@ const reducer = (
     case actionTypes.SET_SOCIAL_DATA:
       return {
         ...state,
-        ...action.payload,
+        socialData: action.payload,
       };
   }
   return state;

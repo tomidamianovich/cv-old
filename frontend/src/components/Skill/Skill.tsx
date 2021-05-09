@@ -125,7 +125,7 @@ export const Skill: React.FC<Props> = () => {
   const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
-    if (skillData) {
+    if (skillData && skillData[0].id !== CONSTANTS.PLACEHOLDERS.TEXT) {
       setLoading(false);
       return;
     }

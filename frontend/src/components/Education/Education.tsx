@@ -20,7 +20,7 @@ export const Education: React.FC<Props> = () => {
   const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
-    if (educationData) {
+    if (educationData && educationData[0].degree !== CONSTANTS.PLACEHOLDERS.TEXT) {
       setLoading(false);
       return;
     }
@@ -40,6 +40,7 @@ export const Education: React.FC<Props> = () => {
       <ListItem
         imageValue={place.image}
         imageName={place.name}
+        loading={loading}
         title={ `${degree} (${description}) ` }
         subtitle={ `${getFormattedDate(startDate)} - ${getFormattedDate(endDate)}` }
         description={place.name}
@@ -48,13 +49,11 @@ export const Education: React.FC<Props> = () => {
   };
 
   return (
-    <AsyncLoading isLoading={loading} hasError={error}>
-      <>
-        {educationData && educationData.map((job: EducationDataType, index: number) => (
-          <EducationDetails job={job} key={index} />
-        ))}
-      </>
-    </AsyncLoading>
+    <>
+      {educationData && educationData.map((job: EducationDataType, index: number) => (
+        <EducationDetails job={job} key={index} />
+      ))}
+    </>
   );
 };
 

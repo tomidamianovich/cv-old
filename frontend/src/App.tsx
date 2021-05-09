@@ -4,7 +4,6 @@ import Section from "./components/Section";
 import { handleRequest } from "./utils/handlers";
 import { useDispatch } from "react-redux";
 import { setPersonId, setPersonData } from "./redux/actions/actions";
-import AsyncLoading from "./components/AsyncLoading";
 import CONSTANTS from "./utils/constants";
 import styled from "styled-components";
 
@@ -53,16 +52,14 @@ const App: React.FC<Props> = () => {
   }, [dispatch]);
 
   return (
-    <AsyncLoading isLoading={loading} hasError={error}>
-      <AppWrapper>
-        <NavbarWrapper>
-          <Navbar />
-        </NavbarWrapper>
-        <SectionWrapper>
-          <Section />
-        </SectionWrapper>
-      </AppWrapper>
-    </AsyncLoading>
+    <AppWrapper>
+      <NavbarWrapper>
+        <Navbar />
+      </NavbarWrapper>
+      <SectionWrapper>
+        <Section />
+      </SectionWrapper>
+    </AppWrapper>
   );
 };
 

@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { handleRequest } from "../../utils/handlers";
+import React, { useState } from "react";
 import { SocialDataType, StoreType, PersonalDataType } from "../../utils/type";
 import { useSelector } from "react-redux";
 import AsyncLoading from "../AsyncLoading";
-import CONSTANTS from "../../utils/constants";
+import Skeleton from "../Skeleton";
 import Social from "../Social";
 import styled from "styled-components";
+import CONSTANTS from "../../utils/constants";
 
 const Wrapper = styled.div`
   display: flex;
@@ -55,40 +55,37 @@ const SocialWrapper = styled(Wrapper)`
   justify-content: center;
 `;
 
-type Props = {};
+type Props = {
+};
 
-const Navbar: React.FC<Props> = () => {
-  const personId: string = useSelector((state: StoreType) => state.personId);
+const Navbar: React.FC<Props> = ({}) => {
+  const personId: string = useSelector((state: StoreType) => state.personId );
   const personalData: PersonalDataType = useSelector((state: StoreType) => state.personData);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<boolean>(false);
-  const [socialData, setSocialData] = useState<SocialDataType>();
-
-  useEffect(() => {
-    console.log(personId)
-    handleRequest(CONSTANTS.BASE_URL_API_PATHS.SOCIAL, personId)
-      .then((response) => setSocialData(response.data))
-      .catch(() => setError(false))
-      .finally(() => setLoading(false));
-  }, [personId]);
 
   const { prefix, name, lastname, description, experience } = personalData
+  const isLoadingPersonData = name === CONSTANTS.PLACEHOLDERS.TEXT;
   return (
-    <AsyncLoading isLoading={loading} hasError={error}>
-      <Wrapper>
-        <PhotoWrapper>
+    <Wrapper>
+      <PhotoWrapper>
+        <Skeleton isLoading={isLoadingPersonData} >
           <img src={process.env.PUBLIC_URL + '/images/profile-picture.jpeg'} alt="Profile" />
-        </PhotoWrapper>
-        <InfoWrapper>
+        </Skeleton>
+      </PhotoWrapper>
+      <InfoWrapper>
+        <Skeleton isLoading={isLoadingPersonData} >
           <InfoTitle>{prefix} {lastname} {name}</InfoTitle>
+        </Skeleton>
+        <Skeleton isLoading={isLoadingPersonData} >
           <InfoSubtitle>{experience.title} - {experience.place}</InfoSubtitle>
+        </Skeleton>
+        <Skeleton isLoading={isLoadingPersonData} >
           <InfoBody>{description}</InfoBody>
-        </InfoWrapper>
-        <SocialWrapper>
-          <Social socialInfo={socialData} />
-        </SocialWrapper>
-      </Wrapper>
-    </AsyncLoading>
+        </Skeleton>
+      </InfoWrapper>
+      <SocialWrapper>
+        <Social />
+      </SocialWrapper>
+    </Wrapper>
   );
 };
 

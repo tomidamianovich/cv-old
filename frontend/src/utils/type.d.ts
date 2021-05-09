@@ -12,6 +12,7 @@ export type ListItemDetailsType = {
   imageName: string;
   imageValue: string;
   title: string;
+  loading: boolean;
   subtitle: string;
   description: string;
 }

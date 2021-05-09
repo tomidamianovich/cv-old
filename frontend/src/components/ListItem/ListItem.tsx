@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { ListItemDetailsType } from "../../utils/type";
 import CONSTANTS from "../../utils/constants";
 import withSectionItemHOC from "../withSectionItemHOC";
 import styled from "styled-components";
+import Skeleton from "../Skeleton";
 
 const Wrapper = styled.div`
   display: flex;
@@ -15,13 +16,18 @@ const Wrapper = styled.div`
 const PhotoWrapper = styled(Wrapper)`
   flex: 20%;
   justify-content: center;
-  img {
+  div .image-container{
     width: 150px;
-    object-fit: scale-down;
     height: 150px;
     border-radius: 50%;
     border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 0 6px 2px rgb(0 0 0 / 42%);
+    img {
+      border-radius: 50%;
+      width: 150px;
+      height: 150px;
+      object-fit: scale-down;
+    }
   }
 `;
   
@@ -51,20 +57,36 @@ type Props = ListItemDetailsType
 export const ListItem: React.FC<Props> = ({
   imageName,
   imageValue, 
-  title, 
-  subtitle, 
+  title,
+  subtitle,
+  loading,
   description
 }) => {
-
+  const [showImage, setShowImage] = useState(false)
   return (
     <Wrapper>
       <PhotoWrapper>
-        <img src={process.env.PUBLIC_URL + '/images/places/' + imageValue } alt="Profile" />
+        <Skeleton isLoading={loading}>
+          <div className="image-container">
+            <img
+              style={!showImage ? { visibility: 'hidden' } : {}}
+              src={process.env.PUBLIC_URL + '/images/places/' + imageValue } 
+              alt={imageName}
+              onLoad={() => setShowImage(true)}
+              /> 
+          </div>
+        </Skeleton>
       </PhotoWrapper>
       <InfoWrapper>
-        <InfoTitle>{title}</InfoTitle>
-        <InfoValue>{subtitle}</InfoValue>
-        <InfoValue>{description}</InfoValue>
+        <Skeleton isLoading={loading}>
+          <InfoTitle>{title}</InfoTitle>
+        </Skeleton>
+        <Skeleton isLoading={loading}>
+          <InfoValue>{subtitle}</InfoValue>
+        </Skeleton>
+        <Skeleton isLoading={loading}>
+          <InfoValue>{description}</InfoValue>
+        </Skeleton>
       </InfoWrapper>
     </Wrapper>
   );

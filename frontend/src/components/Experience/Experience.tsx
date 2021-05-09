@@ -20,7 +20,7 @@ export const Experience: React.FC<Props> = () => {
   const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
-    if (experienceData) {
+    if (experienceData && experienceData[0].id !== CONSTANTS.PLACEHOLDERS.TEXT) {
       setLoading(false);
       return;
     }
@@ -42,18 +42,17 @@ export const Experience: React.FC<Props> = () => {
         title={ `${jobTitle} (${jobDescription}) ` }
         subtitle={ `${getFormattedDate(startDate)} - ${isCurrentJob ? 'Actualidad' : getFormattedDate(endDate) }` }
         description={place.name}
+        loading={loading}
       />
     );
   };
 
   return (
-    <AsyncLoading isLoading={loading} hasError={error}>
-      <>
-        {experienceData && experienceData.map((job: ExperienceDataType, index: number) => (
-          <ExperienceDetails job={job} key={index} isCurrentJob={ index === 0 } />
-        ))}
-      </>
-    </AsyncLoading>
+    <>
+      {experienceData && experienceData.map((job: ExperienceDataType, index: number) => (
+        <ExperienceDetails job={job} key={index} isCurrentJob={ index === 0 } />
+      ))}
+    </>
   );
 };
 

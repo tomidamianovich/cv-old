@@ -1,4 +1,11 @@
-import { CourseDataType, EducationDataType, ExperienceDataType, PersonalDataType, SkillDataType } from "../../utils/type";
+import {
+  CourseDataType,
+  EducationDataType,
+  ExperienceDataType,
+  PersonalDataType,
+  SkillDataType,
+  SocialDataType,
+} from "../../utils/type";
 import actionTypes from "../actionsTypes/StoreTypes";
 
 type PersonIdAction = {
@@ -13,29 +20,33 @@ type PersonDataAction = {
 
 type PersonalDataAction = {
   type: string;
-  payload: PersonalDataType
+  payload: PersonalDataType;
 };
 
 type ExperienceDataAction = {
   type: string;
-  payload: ExperienceDataType
+  payload: ExperienceDataType;
 };
 
 type EducationalDataAction = {
   type: string;
-  payload: EducationDataType
+  payload: EducationDataType;
 };
 
 type CourseDataAction = {
   type: string;
-  payload: CourseDataType
+  payload: CourseDataType;
 };
 
 type SkillDataAction = {
   type: string;
-  payload: SkillDataType
+  payload: SkillDataType;
 };
 
+type SocialDataAction = {
+  type: string;
+  payload: SocialDataType;
+};
 
 export function setPersonId(payload: PersonIdAction["payload"]) {
   const action: PersonIdAction = {
@@ -88,6 +99,14 @@ export function setCourseData(payload: CourseDataAction["payload"]) {
 export function setSkillData(payload: SkillDataAction["payload"]) {
   const action: SkillDataAction = {
     type: actionTypes.SET_SKILL_DATA,
+    payload,
+  };
+  return action;
+}
+
+export function setSocialData(payload: SocialDataAction["payload"]) {
+  const action: SocialDataAction = {
+    type: actionTypes.SET_SOCIAL_DATA,
     payload,
   };
   return action;

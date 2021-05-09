@@ -39,9 +39,14 @@ const MONTHS = {
     'December'
   ]
 }
+const PLACEHOLDERS = {
+ TEXT: "Lorem ipsum dolor sit amet.",
+ NUMBER: 0
+}
 
 const CONSTANTS = {
   APP_NAME,
+  PLACEHOLDERS,
   BASE_URL,
   BASE_URL_API,
   BASE_URL_API_PATHS,

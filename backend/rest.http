@@ -16,25 +16,17 @@ content-type: application/json
 
 ###
 
-POST https://glacial-mesa-61165.herokuapp.com/api/skill  HTTP/1.1
-content-type: application/json
-
-{
-  "person_id": "60927d23c4dbd94394299dae",
- "percentage": 75,
-"name": "English"
-}
-
+DELETE https://glacial-mesa-61165.herokuapp.com/api/skill/60927d23c4dbd94394299dae  HTTP/1.1
 ###
 DELETE  https://glacial-mesa-61165.herokuapp.com/api/place/60933a6a2290450004373d13
 
 ### 
-PUT http://localhost:8000/api/place/6092ad9f1809fe098bc68215 HTTP/1.1
+PUT http://localhost:8000/api/place/6092ade31809fe098bc6821b HTTP/1.1
 content-type: application/json
 
 {
-  "name": "GlobalLogic",
-  "image": "globallogic.jpeg"
+  "name": "Udemy Courses",
+  "image": "mercadolibre.png"
 }
 
 ###

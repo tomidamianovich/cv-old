@@ -1,4 +1,5 @@
 import React from "react";
+import Spinner from "../Spinner"
 
 type Props = {
   children: JSX.Element;
@@ -11,7 +12,7 @@ const AsyncLoading: React.FC<Props> = ({ children, isLoading, hasError }) => {
     case hasError:
       return <span>'Error...'</span>;
     case isLoading:
-      return <span>'Loading...'</span>;
+      return <Spinner width="20px" height="20px" />
     case !isLoading && !hasError:
       return <>{children}</>;
     default:
