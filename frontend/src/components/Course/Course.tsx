@@ -3,8 +3,8 @@ import { CourseDataType, StoreType } from "../../utils/type";
 import { handleRequest, getFormattedDate } from "../../utils/handlers";
 import withSectionItemHOC from "../withSectionItemHOC";
 import ListItem from "../ListItem";
-import AsyncLoading from "../AsyncLoading";
 import CONSTANTS from "../../utils/constants";
+import ErrorSection from "../ErrorSection";
 import { useSelector, useDispatch } from "react-redux";
 import { setCourseData } from "../../redux/actions/actions";
 
@@ -20,13 +20,17 @@ export const Course: React.FC<Props> = () => {
   const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
-    if (courseData && courseData[0].name !== CONSTANTS.PLACEHOLDERS.TEXT) {
+    if (
+      courseData &&
+      courseData[0].person_id === personId &&
+      courseData[0].name !== CONSTANTS.PLACEHOLDERS.TEXT
+    ) {
       setLoading(false);
       return;
     }
     handleRequest(CONSTANTS.BASE_URL_API_PATHS.COURSE, personId)
       .then((response) => dispatch(setCourseData(response.data)))
-      .catch(() => setError(false))
+      .catch(() => setError(true))
       .finally(() => setLoading(false));
   }, [personId, courseData, dispatch]);
 
@@ -36,21 +40,29 @@ export const Course: React.FC<Props> = () => {
 
   const CourseDetails: React.FC<CourseDetailsProps> = ({ course }) => {
     const { name, description, date, place } = course;
-    return <ListItem
-      imageValue={place.image}
-      imageName={place.name}
-      title={name}
-      loading={loading}
-      subtitle={ `${getFormattedDate(date)}` }
-      description={description}
-    />
+    return (
+      <ListItem
+        imageValue={place.image}
+        imageName={place.name}
+        title={name}
+        loading={loading}
+        subtitle={`${getFormattedDate(date)}`}
+        description={description}
+      />
+    );
   };
 
   return (
     <>
-      { courseData && courseData.map((course: CourseDataType, index: number) => (
-        <CourseDetails course={course} key={index} />
-      ))}
+      {
+        courseData && !error &&
+          courseData.map((course: CourseDataType, index: number) => (
+            <CourseDetails course={course} key={index} />
+          ))
+      }
+      {
+        error && <ErrorSection />
+      }
     </>
   );
 };

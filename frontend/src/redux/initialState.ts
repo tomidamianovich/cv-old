@@ -4,6 +4,7 @@ import { StoreType } from "../utils/type";
 const courseDataPlaceholder = {
   name: CONSTANTS.PLACEHOLDERS.TEXT,
   description: CONSTANTS.PLACEHOLDERS.TEXT,
+  person_id: CONSTANTS.PLACEHOLDERS.TEXT,
   date: CONSTANTS.PLACEHOLDERS.TEXT,
   place: {
     name: CONSTANTS.PLACEHOLDERS.TEXT,

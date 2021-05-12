@@ -3,7 +3,7 @@ import { EducationDataType, StoreType } from "../../utils/type";
 import { handleRequest, getFormattedDate } from "../../utils/handlers";
 import CONSTANTS from "../../utils/constants";
 import withSectionItemHOC from "../withSectionItemHOC";
-import AsyncLoading from "../AsyncLoading";
+import ErrorSection from "../ErrorSection";
 import ListItem from "../ListItem";
 import { useSelector, useDispatch } from "react-redux";
 import { setEducationalData } from "../../redux/actions/actions";
@@ -20,13 +20,17 @@ export const Education: React.FC<Props> = () => {
   const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
-    if (educationData && educationData[0].degree !== CONSTANTS.PLACEHOLDERS.TEXT) {
+    if (
+      educationData &&
+      educationData[0].person_id === personId &&
+      educationData[0].degree !== CONSTANTS.PLACEHOLDERS.TEXT
+    ) {
       setLoading(false);
       return;
     }
     handleRequest(CONSTANTS.BASE_URL_API_PATHS.EDUCATION, personId)
       .then((response) => dispatch(setEducationalData(response.data)))
-      .catch(() => setError(false))
+      .catch(() => setError(true))
       .finally(() => setLoading(false));
   }, [personId, educationData, dispatch]);
 
@@ -41,8 +45,10 @@ export const Education: React.FC<Props> = () => {
         imageValue={place.image}
         imageName={place.name}
         loading={loading}
-        title={ `${degree} (${description}) ` }
-        subtitle={ `${getFormattedDate(startDate)} - ${getFormattedDate(endDate)}` }
+        title={`${degree} (${description}) `}
+        subtitle={`${getFormattedDate(startDate)} - ${getFormattedDate(
+          endDate
+        )}`}
         description={place.name}
       />
     );
@@ -50,9 +56,13 @@ export const Education: React.FC<Props> = () => {
 
   return (
     <>
-      {educationData && educationData.map((job: EducationDataType, index: number) => (
-        <EducationDetails job={job} key={index} />
-      ))}
+      {educationData && !error && 
+        educationData.map((job: EducationDataType, index: number) => (
+          <EducationDetails job={job} key={index} />
+        ))}
+      {
+        error && <ErrorSection />
+      }
     </>
   );
 };

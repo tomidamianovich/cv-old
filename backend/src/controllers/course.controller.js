@@ -41,11 +41,12 @@ courseCtrl.getCourseByPersonId = async (req, res) => {
 		let place;
 		for (const course of courses) {
 			place = await Place.findOne({ "_id": course.place_id });
-			const { name, description, date } = course
+			const { name, description, date, person_id } = course
 			coursesWithPlace = [...coursesWithPlace, {
 				name,
 				description,
 				date,
+				person_id: req.params.id,
 				...place && {
 					place: {
 						name: place.name,
@@ -54,6 +55,7 @@ courseCtrl.getCourseByPersonId = async (req, res) => {
 				}
 			}]
 		}
+		console.log(coursesWithPlace)
 		res.status(200).json(coursesWithPlace);
 	} catch (err) {
 		res.status(500).json({

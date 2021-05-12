@@ -8,30 +8,6 @@ import { setSkillData } from "../../redux/actions/actions";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 
-const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 1rem;
-  justify-content: space-between;
-`;
-
-const Item = styled.div`
-  width: 100%;
-  flex: 48%;
-  padding: 1rem 0 1rem 2%;
-  color: #000000;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: row;
-  span:first-child {
-    font-weight: 400;
-  }
-  span:not(:first-child) {
-    font-weight: 200;
-  }
-`;
-
 const ItemContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -81,7 +57,9 @@ const ProgressCircle = styled.div`
           }
           :nth-child(2)
           {
-            stroke-dashoffset:calc(440 - (440 * 87) / 100);
+            stroke-dashoffset:calc(440 - (440 * ${(props: {
+              value: number
+            }) => props.value}) / 100);
             stroke: #aa8f7c;
           }
         }
@@ -105,6 +83,7 @@ const ProgressCircle = styled.div`
       }
     }
     .text { 
+      height: 5rem;
       padding 10px 0 0;
       color:#999;
       font-weight:700;
@@ -117,7 +96,6 @@ type Props = {};
 
 export const Skill: React.FC<Props> = () => {
   const dispatch = useDispatch();
-  const personId: string = useSelector((state: StoreType) => state.personId);
   const skillData: SkillDataType[] = useSelector(
     (state: StoreType) => state.skillData
   );
@@ -129,30 +107,20 @@ export const Skill: React.FC<Props> = () => {
       setLoading(false);
       return;
     }
-    handleRequest(CONSTANTS.BASE_URL_API_PATHS.SKILL, personId)
+    handleRequest(CONSTANTS.BASE_URL_API_PATHS.SKILL)
       .then((response) => dispatch(setSkillData(response.data)))
-      .catch(() => setError(false))
+      .catch(() => setError(true))
       .finally(() => setLoading(false));
-  }, [personId, dispatch, skillData]);
+  }, [dispatch, skillData]);
 
   type SkillDetailsProps = {
     skill: SkillDataType;
   };
 
-  const SkillDetails: React.FC<SkillDetailsProps> = ({ skill }) => {
-    const { name, percentage } = skill;
-    return (
-      <Item>
-        <span>{name}</span>
-        <span>{percentage}</span>
-      </Item>
-    )
-  };
-
   const SkillProgress: React.FC<SkillDetailsProps> = ({ skill }) => {
     const { name, percentage } = skill;
     return (
-      <ProgressCircle>
+      <ProgressCircle value={percentage}>
         <div className="box">
           <div className="percent">
             <svg>
@@ -170,7 +138,7 @@ export const Skill: React.FC<Props> = () => {
   }
 
   return (
-    <AsyncLoading isLoading={loading} hasError={error}>
+    <AsyncLoading isLoading={loading} hasError={true}>
       <ItemContainer>
         {skillData && skillData.map((skill: SkillDataType, index: number) => (
           <SkillProgress skill={skill} key={index} />

@@ -4,32 +4,27 @@ const socialSchema = new Schema({
   instagram: {
     type: String,
     required: true,
-    trim: true,
-    unique: true
+    trim: true
   },
   facebook: {
     type: String,
     required: true,
-    trim: true,
-    unique: true
+    trim: true
   },
   telephone: {
     type: String,
     required: true,
-    trim: true,
-    unique: true
+    trim: true
   },
   mail: {
     type: String,
     required: true,
-    trim: true,
-    unique: true
+    trim: true
   },
   linkedIn: {
     type: String,
     required: true,
-    trim: true,
-    unique: true
+    trim: true
   },
   person_id: {
     type: String,

@@ -54,12 +54,12 @@ const Item: React.FC<{
   <Skeleton isLoading={loading}>
     <ItemWrapper>
       <FontAwesomeIcon icon={icon} color={iconColor} />
-      <Link href={title}>{getSocialUserId(title, addSlash)}</Link>
+      <Link href={title} target='_blank'>{getSocialUserId(title, addSlash)}</Link>
     </ItemWrapper>
   </Skeleton>
 );
 
-const Social: React.FC<Props> = ({}) => {
+const Social: React.FC<Props> = () => {
   const personId: string = useSelector((state: StoreType) => state.personId);
   const socialData: SocialDataType = useSelector((state: StoreType) => state.socialData);
   const [loading, setLoading] = useState<boolean>(true);
@@ -69,9 +69,9 @@ const Social: React.FC<Props> = ({}) => {
   useEffect(() => {
     personId !== CONSTANTS.PLACEHOLDERS.TEXT && handleRequest(CONSTANTS.BASE_URL_API_PATHS.SOCIAL, personId)
       .then((response) => dispatch(setSocialData(response.data)))
-      .catch(() => setError(false))
+      .catch(() => setError(true))
       .finally(() => setLoading(false));
-  }, [personId]);
+  }, [personId, dispatch]);
 
   const { instagram, facebook, telephone, mail, linkedIn } = socialData;
   return (

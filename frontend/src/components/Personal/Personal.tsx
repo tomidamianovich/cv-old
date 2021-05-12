@@ -3,6 +3,7 @@ import withSectionItemHOC from "../withSectionItemHOC";
 import { StoreType, PersonalDataType } from "../../utils/type";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { withTranslation } from "react-i18next";
 
 const Item = styled.span`
   width: 100%;
@@ -29,15 +30,20 @@ const ItemContainer = styled.div`
   flex-wrap: wrap;
 `;
 
-type Props = {};
+type Props = {
+  t: any;
+};
 
-const Personal: React.FC<Props> = () => {
+const Personal: React.FC<Props> = ({
+  t
+}) => {
   const personalData: PersonalDataType = useSelector(
     (state: StoreType) => state.personData
   );
 
   const PersonalInfo: React.FC<{
     data: PersonalDataType;
+    t: any;
   }> = ({ data }) => {
     if (!data) return null;
     const { name, lastname, age, civilStatus, locationName } = data;
@@ -56,17 +62,17 @@ const Personal: React.FC<Props> = () => {
 
     return (
       <ItemContainer>
-        <ItemWithBody title="Nombre" value={`${name} ${lastname}`} />
-        <ItemWithBody title="Edad" value={`${age} años`} />
-        <ItemWithBody title="Estado Civil" value={civilStatus} />
-        <ItemWithBody title="Lugar de residencia" value={locationName} />
+        <ItemWithBody title={t("sections.personalData.data.name")} value={`${name} ${lastname}`} />
+        <ItemWithBody title={t("sections.personalData.data.age")} value={`${age} años`} />
+        <ItemWithBody title={t("sections.personalData.data.civilStatus")} value={civilStatus} />
+        <ItemWithBody title={t("sections.personalData.data.location")} value={locationName} />
       </ItemContainer>
     );
   };
 
   return (
-    <PersonalInfo data={personalData} />
+    <PersonalInfo data={personalData} t={t} />
   );
 };
 
-export default withSectionItemHOC(Personal);
+export default withTranslation()(withSectionItemHOC(Personal));

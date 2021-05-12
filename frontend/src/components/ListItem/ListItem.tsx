@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { ListItemDetailsType } from "../../utils/type";
-import CONSTANTS from "../../utils/constants";
-import withSectionItemHOC from "../withSectionItemHOC";
 import styled from "styled-components";
 import Skeleton from "../Skeleton";
 

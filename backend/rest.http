@@ -1,17 +1,17 @@
-POST http://localhost:8000/api/person  HTTP/1.1
+POST http://localhost:8000/api/skill  HTTP/1.1
 content-type: application/json
 
 {
-  "language": "es",
-  "prefix": "Ing.",
+  "language": "en",
+  "prefix": "P.Eng.",
   "name": "Tomás",
   "birthdate": "1994-12-26T00:00:00.244Z",
   "lastname": "Damianovich Reddy",
-  "civilStatus": "Soltero",
+  "civilStatus": "Single",
   "locationName": "La Plata - Buenos Aires - Argentina",
   "locationValue": "https://goo.gl/maps/DoLRf9RWNgAFoKfR9",
   "profilePhoto": "https://firebasestorage.googleapis.com/v0/b/cvreact-43129.appspot.com/o/profile.jpg?alt=media&amp;token=e77b1d24-065b-4cf2-9a59-e7c646973d38",
-  "description": "Me considero una persona responsable, dinamica, un poco detallista y con iniciativa. Siempre estoy en busqueda de aprender nuevos conocimientos y afrontar nuevos desafios que me permitan crecer en lo personal como asi también en lo profesional."
+  "description": "I consider myself a responsible person, detail-oriented and with initiative.  I am always looking for opportunities to learn new knowledge and face new challenges that allow me to grow both personally and professionally."
 }
 
 ###
@@ -31,16 +31,19 @@ content-type: application/json
 
 ###
 
-PUT   http://localhost:8000/api/social/608ddef77cbd8c5258d93da6 HTTP/1.1
+DELETE http://localhost:8000/api/education/60988846857b462e020988a7
+
+###
+
+POST   http://localhost:8000/api/course HTTP/1.1
 content-type: application/json
 
 {
-  "instagram": "https://www.instagram.com/tomidamianovich",
-  "facebook": "https://www.facebook.com/tomasdamianovich",
-  "telephone": "+5492216261952",
-  "mail": "tomasdamianovich@gmail.com",
-  "linkedIn": "https://www.linkedin.com/in/tomasdr",
-  "person_id": "608ddef77cbd8c5258d93da6"
+ "name": "Build a Python rest api with the django rest framework",
+"description": "Serialization and Unserialization, ViewSets, Models, Access Control, tokens",
+"date": "2021-01-01T00:00:00.244Z",
+  "person_id": "6098813d302c510a5dbfb29c",
+  "place_id": "6092add81809fe098bc6821a"
 }
 
 ###
@@ -50,16 +53,16 @@ DELETE https://glacial-mesa-61165.herokuapp.com/api/course/609316b72290450004373
 ###
 
 
-PUT   http://localhost:8000/api/experience/608de8728bfc2a5c5847ede6 HTTP/1.1
+POST   http://localhost:8000/api/experience HTTP/1.1
 content-type: application/json
 
 {
-  "jobTitle": "Senior Front End Engineer",
-  "jobDescription": "REACT, STYLED COMPONENTS, JEST, NODE, BEM, STORYBOOK",
-  "startDate": "2021-05-17T00:00:00.244Z",
-  "endDate": "2021-05-17T00:00:00.244Z",
-  "person_id": "608ddef77cbd8c5258d93da6",
-  "place_id": "608de7578bfc2a5c5847ede2"
+ "jobTitle": "UI Developer",
+"jobDescription": "HTML, CSS, JS, JQUERY, PHP",
+"startDate": "2016-01-01T00:00:00.244Z",
+"endDate": "2017-05-01T00:00:00.244Z",
+  "person_id": "6098813d302c510a5dbfb29c",
+  "place_id": "60988980857b462e020988aa"
 }
 
 ###
@@ -73,7 +76,7 @@ content-type: application/json
   "startDate": "2021-05-17T00:00:00.244Z",
   "endDate": "2021-05-17T00:00:00.244Z",
   "person_id": "608ddef77cbd8c5258d93da6",
-  "place_id": "608de7578bfc2a5c5847ede2"
+  "place_id": "6092ad9f1809fe098bc68215"
 }
 
 ### 
@@ -87,7 +90,7 @@ POST  http://localhost:8000/api/place HTTP/1.1
 content-type: application/json
 
 {
-  "name": "Udemy Courses",
-  "image": "https://logodownload.org/wp-content/uploads/2019/07/udemy-logo-0.png"
+  "name": "National Technology University",
+  "image": "utn.png"
 }
 

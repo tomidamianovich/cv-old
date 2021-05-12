@@ -9,11 +9,6 @@ const rotate360 = keyframes`
   }
 `;
 
-type SpinnerProps = {
-  width: string ;
-  height: string;
-}
-
 const Spinner = styled.div`
   animation: ${rotate360} 1s linear infinite;
   transform: translateZ(0);
@@ -24,9 +19,9 @@ const Spinner = styled.div`
   background: transparent;
   margin: auto;
   display: block;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
-  width: ${(props: SpinnerProps) => props.width ? props.width : '20px'};
-  height: ${(props: SpinnerProps) => props.height ? props.height : '20px'};
 `;
 
 export default Spinner;

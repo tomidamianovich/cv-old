@@ -18,12 +18,18 @@ const Button = styled.button`
   margin: 1rem;
   text-align: right;
   background-color: white;
-  cursor: pointer;
-`;
-
+  `;
+  
 const Wrapper = styled.div`
+  cursor: pointer;
   color: black;
+  padding: 0.1rem 0.4rem;
   display: block;
+  &:hover {
+    box-shadow: 0px 0px 3px 0px #e4cece;
+    cursor: pointer;
+    border-radius: 20px;
+  }
 `;
 
 const TitleWrapper: any = styled.div`
@@ -56,13 +62,13 @@ const withSectionItemHOC = <P extends object>(
   const WrappedComponentFormatted: React.FC<WrappedComponentProps> = ({ ...props }: WrappedComponentProps) => {
     const [visible, setVisibility] = useState(false);
     return (
-      <Wrapper>
+      <Wrapper onClick={() => setVisibility(!visible)}>
         <TitleWrapper>
           <SectionTitle variant={props.variant}>
             <FontAwesomeIcon icon={props.icon} />
             <span> {props.title} </span>
           </SectionTitle>
-          <Button onClick={() => setVisibility(!visible)}>
+          <Button>
             <FontAwesomeIcon icon={!visible ? faSortDown : faSortUp } />
           </Button>
         </TitleWrapper>

@@ -1,0 +1,18 @@
+{
+  "title": "Welcome to react using react-i18next",
+  "sections": {
+    "personalData": {
+      "name": "Personal Data",
+      "data": {
+        "name": "Name",
+        "civilStatus": "Civil Status",
+        "age": "Age",
+        "location": "Location"
+      }
+    },
+    "experience": "Experience",
+    "education": "Education",
+    "course": "Courses",
+    "skill": "Skills"
+  }
+}

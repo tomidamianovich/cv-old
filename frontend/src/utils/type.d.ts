@@ -69,6 +69,7 @@ export type SkillDataType = {
 
 export type CourseDataType = {
   name: string;
+  person_id: string;
   description: string;
   date: string;
   place: {

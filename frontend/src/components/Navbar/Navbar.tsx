@@ -1,7 +1,6 @@
-import React, { useState } from "react";
-import { SocialDataType, StoreType, PersonalDataType } from "../../utils/type";
+import React from "react";
+import { StoreType, PersonalDataType } from "../../utils/type";
 import { useSelector } from "react-redux";
-import AsyncLoading from "../AsyncLoading";
 import Skeleton from "../Skeleton";
 import Social from "../Social";
 import styled from "styled-components";
@@ -55,10 +54,9 @@ const SocialWrapper = styled(Wrapper)`
   justify-content: center;
 `;
 
-type Props = {
-};
+type Props = {};
 
-const Navbar: React.FC<Props> = ({}) => {
+const Navbar: React.FC<Props> = () => {
   const personId: string = useSelector((state: StoreType) => state.personId );
   const personalData: PersonalDataType = useSelector((state: StoreType) => state.personData);
 
