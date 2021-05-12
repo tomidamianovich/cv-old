@@ -9,8 +9,8 @@ const courseDataPlaceholder = {
   place: {
     name: CONSTANTS.PLACEHOLDERS.TEXT,
     image: CONSTANTS.PLACEHOLDERS.TEXT,
-  }
-}
+  },
+};
 
 const educationalDataPlaceholder = {
   degree: CONSTANTS.PLACEHOLDERS.TEXT,
@@ -22,8 +22,8 @@ const educationalDataPlaceholder = {
   place: {
     name: CONSTANTS.PLACEHOLDERS.TEXT,
     image: CONSTANTS.PLACEHOLDERS.TEXT,
-  }
-}
+  },
+};
 
 const experienceDataPlaceholder = {
   id: CONSTANTS.PLACEHOLDERS.TEXT,
@@ -35,14 +35,14 @@ const experienceDataPlaceholder = {
   place: {
     name: CONSTANTS.PLACEHOLDERS.TEXT,
     image: CONSTANTS.PLACEHOLDERS.TEXT,
-  }
-}
+  },
+};
 
 const skillDataPlaceholder = {
   id: CONSTANTS.PLACEHOLDERS.TEXT,
   name: CONSTANTS.PLACEHOLDERS.TEXT,
   percentage: CONSTANTS.PLACEHOLDERS.NUMBER,
-}
+};
 
 export const initialState: StoreType = {
   personId: CONSTANTS.PLACEHOLDERS.TEXT,
@@ -58,7 +58,7 @@ export const initialState: StoreType = {
     profilePhoto: CONSTANTS.PLACEHOLDERS.TEXT,
     experience: {
       title: CONSTANTS.PLACEHOLDERS.TEXT,
-      place: CONSTANTS.PLACEHOLDERS.TEXT 
+      place: CONSTANTS.PLACEHOLDERS.TEXT,
     },
     social: {
       _id: CONSTANTS.PLACEHOLDERS.TEXT,
@@ -68,7 +68,7 @@ export const initialState: StoreType = {
       mail: CONSTANTS.PLACEHOLDERS.TEXT,
       linkedIn: CONSTANTS.PLACEHOLDERS.TEXT,
       person_id: CONSTANTS.PLACEHOLDERS.TEXT,
-    }
+    },
   },
   personalData: {
     prefix: CONSTANTS.PLACEHOLDERS.TEXT,
@@ -82,7 +82,7 @@ export const initialState: StoreType = {
     profilePhoto: CONSTANTS.PLACEHOLDERS.TEXT,
     experience: {
       title: CONSTANTS.PLACEHOLDERS.TEXT,
-      place: CONSTANTS.PLACEHOLDERS.TEXT 
+      place: CONSTANTS.PLACEHOLDERS.TEXT,
     },
     social: {
       _id: CONSTANTS.PLACEHOLDERS.TEXT,
@@ -92,28 +92,24 @@ export const initialState: StoreType = {
       mail: CONSTANTS.PLACEHOLDERS.TEXT,
       linkedIn: CONSTANTS.PLACEHOLDERS.TEXT,
       person_id: CONSTANTS.PLACEHOLDERS.TEXT,
-    }
+    },
   },
   courseData: [
     courseDataPlaceholder,
     courseDataPlaceholder,
-    courseDataPlaceholder
+    courseDataPlaceholder,
   ],
   educationalData: [
     educationalDataPlaceholder,
     educationalDataPlaceholder,
-    educationalDataPlaceholder
+    educationalDataPlaceholder,
   ],
   experienceData: [
     experienceDataPlaceholder,
     experienceDataPlaceholder,
-    experienceDataPlaceholder
+    experienceDataPlaceholder,
   ],
-  skillData: [
-    skillDataPlaceholder,
-    skillDataPlaceholder,
-    skillDataPlaceholder
-  ],
+  skillData: [skillDataPlaceholder, skillDataPlaceholder, skillDataPlaceholder],
   socialData: {
     _id: CONSTANTS.PLACEHOLDERS.TEXT,
     instagram: CONSTANTS.PLACEHOLDERS.TEXT,
@@ -122,5 +118,5 @@ export const initialState: StoreType = {
     mail: CONSTANTS.PLACEHOLDERS.TEXT,
     linkedIn: CONSTANTS.PLACEHOLDERS.TEXT,
     person_id: CONSTANTS.PLACEHOLDERS.TEXT,
-  }
+  },
 };

@@ -7,10 +7,13 @@ export const handleRequest = (reqUrl: string, personId?: string) => {
   return axios.get(`${BASE_URL_API}${reqUrl}${personId ? "/" + personId : ""}`);
 };
 
-export const getFormattedDate = (date: string, language:LanguageType = "es") => {
+export const getFormattedDate = (
+  date: string,
+  language: LanguageType = "es"
+) => {
   const { MONTHS } = constants;
-  const d = new Date(date)
-  const year = d.getFullYear()
-  const monthName = MONTHS[language][d.getMonth()]
-  return monthName + ' ' + year
-}
+  const d = new Date(date);
+  const year = d.getFullYear();
+  const monthName = MONTHS[language][d.getMonth()];
+  return monthName + " " + year;
+};

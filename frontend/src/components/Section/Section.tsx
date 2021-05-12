@@ -42,11 +42,7 @@ export const SectionComponent: React.FC<Props> = ({ t, i18n }) => {
         variant={"#94d4d0"}
         icon={faBookmark}
       />
-      <Skill
-        title={t("sections.skill")}
-        variant={"#da80cf"}
-        icon={faCode}
-      />
+      <Skill title={t("sections.skill")} variant={"#da80cf"} icon={faCode} />
     </div>
   );
 };

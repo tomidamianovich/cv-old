@@ -57,9 +57,8 @@ const ProgressCircle = styled.div`
           }
           :nth-child(2)
           {
-            stroke-dashoffset:calc(440 - (440 * ${(props: {
-              value: number
-            }) => props.value}) / 100);
+            stroke-dashoffset:calc(440 - (440 * ${(props: { value: number }) =>
+              props.value}) / 100);
             stroke: #aa8f7c;
           }
         }
@@ -128,21 +127,25 @@ export const Skill: React.FC<Props> = () => {
               <circle cx="70" cy="70" r="70"></circle>
             </svg>
             <div className="num">
-              <h2>{percentage}<span>%</span></h2>
+              <h2>
+                {percentage}
+                <span>%</span>
+              </h2>
             </div>
           </div>
           <h2 className="text">{name}</h2>
         </div>
       </ProgressCircle>
-    )
-  }
+    );
+  };
 
   return (
-    <AsyncLoading isLoading={loading} hasError={true}>
+    <AsyncLoading isLoading={loading} hasError={error}>
       <ItemContainer>
-        {skillData && skillData.map((skill: SkillDataType, index: number) => (
-          <SkillProgress skill={skill} key={index} />
-        ))}
+        {skillData &&
+          skillData.map((skill: SkillDataType, index: number) => (
+            <SkillProgress skill={skill} key={index} />
+          ))}
       </ItemContainer>
     </AsyncLoading>
   );

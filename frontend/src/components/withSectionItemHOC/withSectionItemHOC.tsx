@@ -18,8 +18,8 @@ const Button = styled.button`
   margin: 1rem;
   text-align: right;
   background-color: white;
-  `;
-  
+`;
+
 const Wrapper = styled.div`
   cursor: pointer;
   color: black;
@@ -39,10 +39,9 @@ const TitleWrapper: any = styled.div`
   text-transform: uppercase;
 `;
 
-const SectionTitle:any = styled.div`
-  background-color: ${(props: {
-    variant: string
-  }) => props.variant ? props.variant : "lightgray"};
+const SectionTitle: any = styled.div`
+  background-color: ${(props: { variant: string }) =>
+    props.variant ? props.variant : "lightgray"};
   padding: 0.6rem;
   border-radius: 0.2rem;
   color: white;
@@ -59,7 +58,9 @@ const SectionTitle:any = styled.div`
 const withSectionItemHOC = <P extends object>(
   WrappedComponent: React.ComponentType<P>
 ) => {
-  const WrappedComponentFormatted: React.FC<WrappedComponentProps> = ({ ...props }: WrappedComponentProps) => {
+  const WrappedComponentFormatted: React.FC<WrappedComponentProps> = ({
+    ...props
+  }: WrappedComponentProps) => {
     const [visible, setVisibility] = useState(false);
     return (
       <Wrapper onClick={() => setVisibility(!visible)}>
@@ -69,14 +70,14 @@ const withSectionItemHOC = <P extends object>(
             <span> {props.title} </span>
           </SectionTitle>
           <Button>
-            <FontAwesomeIcon icon={!visible ? faSortDown : faSortUp } />
+            <FontAwesomeIcon icon={!visible ? faSortDown : faSortUp} />
           </Button>
         </TitleWrapper>
         {visible && <WrappedComponent {...(props as P)} />}
       </Wrapper>
     );
-  }
-  return WrappedComponentFormatted
+  };
+  return WrappedComponentFormatted;
 };
 
 export default withSectionItemHOC;

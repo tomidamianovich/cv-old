@@ -15,7 +15,7 @@ const Wrapper = styled.div`
   font-weight: 200;
 `;
 
-type Props = {}
+type Props = {};
 
 const Navbar: React.FC<Props> = () => {
   const { i18n } = useTranslation();

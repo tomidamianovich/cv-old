@@ -25,7 +25,7 @@ const PhotoWrapper = styled(Wrapper)`
     box-shadow: 0 0 6px 2px rgb(0 0 0 / 42%);
   }
 `;
-  
+
 const InfoWrapper = styled(Wrapper)`
   flex: 45%;
   margin: 0 5%;
@@ -57,26 +57,34 @@ const SocialWrapper = styled(Wrapper)`
 type Props = {};
 
 const Navbar: React.FC<Props> = () => {
-  const personId: string = useSelector((state: StoreType) => state.personId );
-  const personalData: PersonalDataType = useSelector((state: StoreType) => state.personData);
+  const personalData: PersonalDataType = useSelector(
+    (state: StoreType) => state.personData
+  );
 
-  const { prefix, name, lastname, description, experience } = personalData
+  const { prefix, name, lastname, description, experience } = personalData;
   const isLoadingPersonData = name === CONSTANTS.PLACEHOLDERS.TEXT;
   return (
     <Wrapper>
       <PhotoWrapper>
-        <Skeleton isLoading={isLoadingPersonData} >
-          <img src={process.env.PUBLIC_URL + '/images/profile-picture.jpeg'} alt="Profile" />
+        <Skeleton isLoading={isLoadingPersonData}>
+          <img
+            src={process.env.PUBLIC_URL + "/images/profile-picture.jpeg"}
+            alt="Profile"
+          />
         </Skeleton>
       </PhotoWrapper>
       <InfoWrapper>
-        <Skeleton isLoading={isLoadingPersonData} >
-          <InfoTitle>{prefix} {lastname} {name}</InfoTitle>
+        <Skeleton isLoading={isLoadingPersonData}>
+          <InfoTitle>
+            {prefix} {lastname} {name}
+          </InfoTitle>
         </Skeleton>
-        <Skeleton isLoading={isLoadingPersonData} >
-          <InfoSubtitle>{experience.title} - {experience.place}</InfoSubtitle>
+        <Skeleton isLoading={isLoadingPersonData}>
+          <InfoSubtitle>
+            {experience.title} - {experience.place}
+          </InfoSubtitle>
         </Skeleton>
-        <Skeleton isLoading={isLoadingPersonData} >
+        <Skeleton isLoading={isLoadingPersonData}>
           <InfoBody>{description}</InfoBody>
         </Skeleton>
       </InfoWrapper>

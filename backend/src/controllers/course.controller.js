@@ -46,7 +46,7 @@ courseCtrl.getCourseByPersonId = async (req, res) => {
 				name,
 				description,
 				date,
-				person_id: req.params.id,
+				person_id,
 				...place && {
 					place: {
 						name: place.name,
@@ -55,7 +55,6 @@ courseCtrl.getCourseByPersonId = async (req, res) => {
 				}
 			}]
 		}
-		console.log(coursesWithPlace)
 		res.status(200).json(coursesWithPlace);
 	} catch (err) {
 		res.status(500).json({

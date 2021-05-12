@@ -11,39 +11,39 @@ const BASE_URL_API_PATHS = {
   EDUCATION: "education",
 };
 const MONTHS = {
-  "es": [
-    'Enero',
-    'Febreo',
-    'Marzo',
-    'Abril',
-    'Mayo',
-    'Junio',
-    'Julio',
-    'Agosto',
-    'Septiembre',
-    'Octubre',
-    'Noviembre',
-    'Diciembre'
+  es: [
+    "Enero",
+    "Febreo",
+    "Marzo",
+    "Abril",
+    "Mayo",
+    "Junio",
+    "Julio",
+    "Agosto",
+    "Septiembre",
+    "Octubre",
+    "Noviembre",
+    "Diciembre",
   ],
-  "en": [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December'
-  ]
-}
+  en: [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ],
+};
 const PLACEHOLDERS = {
- TEXT: "Lorem ipsum dolor sit amet.",
- NUMBER: 0
-}
+  TEXT: "Lorem ipsum dolor sit amet.",
+  NUMBER: 0,
+};
 
 const CONSTANTS = {
   APP_NAME,
@@ -51,7 +51,7 @@ const CONSTANTS = {
   BASE_URL,
   BASE_URL_API,
   BASE_URL_API_PATHS,
-  MONTHS
+  MONTHS,
 };
 
 export default CONSTANTS;

@@ -13,14 +13,14 @@ const Item = styled.span`
     font-size: 1.2rem;
   }
   span:not(:first-child) {
-    font-size: 1  rem;
+    font-size: 1 rem;
     font-weight: 200;
   }
-  @media (min-width:801px) {
+  @media (min-width: 801px) {
     flex: 48%;
     padding: 1rem 0 1rem 2%;
   }
-  @media (max-width:801px) {
+  @media (max-width: 801px) {
     padding: 1rem 0;
   }
 `;
@@ -34,9 +34,7 @@ type Props = {
   t: any;
 };
 
-const Personal: React.FC<Props> = ({
-  t
-}) => {
+const Personal: React.FC<Props> = ({ t }) => {
   const personalData: PersonalDataType = useSelector(
     (state: StoreType) => state.personData
   );
@@ -62,17 +60,27 @@ const Personal: React.FC<Props> = ({
 
     return (
       <ItemContainer>
-        <ItemWithBody title={t("sections.personalData.data.name")} value={`${name} ${lastname}`} />
-        <ItemWithBody title={t("sections.personalData.data.age")} value={`${age} años`} />
-        <ItemWithBody title={t("sections.personalData.data.civilStatus")} value={civilStatus} />
-        <ItemWithBody title={t("sections.personalData.data.location")} value={locationName} />
+        <ItemWithBody
+          title={t("sections.personalData.data.name")}
+          value={`${name} ${lastname}`}
+        />
+        <ItemWithBody
+          title={t("sections.personalData.data.age")}
+          value={`${age} años`}
+        />
+        <ItemWithBody
+          title={t("sections.personalData.data.civilStatus")}
+          value={civilStatus}
+        />
+        <ItemWithBody
+          title={t("sections.personalData.data.location")}
+          value={locationName}
+        />
       </ItemContainer>
     );
   };
 
-  return (
-    <PersonalInfo data={personalData} t={t} />
-  );
+  return <PersonalInfo data={personalData} t={t} />;
 };
 
 export default withTranslation()(withSectionItemHOC(Personal));

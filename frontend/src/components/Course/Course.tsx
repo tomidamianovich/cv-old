@@ -54,15 +54,12 @@ export const Course: React.FC<Props> = () => {
 
   return (
     <>
-      {
-        courseData && !error &&
-          courseData.map((course: CourseDataType, index: number) => (
-            <CourseDetails course={course} key={index} />
-          ))
-      }
-      {
-        error && <ErrorSection />
-      }
+      {courseData &&
+        !error &&
+        courseData.map((course: CourseDataType, index: number) => (
+          <CourseDetails course={course} key={index} />
+        ))}
+      {error && <ErrorSection />}
     </>
   );
 };

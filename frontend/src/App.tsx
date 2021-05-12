@@ -14,7 +14,7 @@ import { useTranslation } from "react-i18next";
 const AppWrapper = styled.div`
   margin: 0;
   padding: 0;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   font-weight: 100;
 `;
 
@@ -40,12 +40,9 @@ const SectionWrapper = styled(Wrapper)`
   color: #777;
 `;
 
-
 type Props = {};
 
-
 const AppComponent: React.FC<Props> = () => {
-  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
   const { i18n } = useTranslation();
   const dispatch = useDispatch();
@@ -53,22 +50,23 @@ const AppComponent: React.FC<Props> = () => {
   const currentLanguage = i18n.language === "es-ES" ? "es" : "en";
 
   useEffect(() => {
-    handleRequest(`${CONSTANTS.BASE_URL_API_PATHS.PERSONAL_DATA_LANGUAGE}${currentLanguage}`)
+    handleRequest(
+      `${CONSTANTS.BASE_URL_API_PATHS.PERSONAL_DATA_LANGUAGE}${currentLanguage}`
+    )
       .then((response: any) => {
         if (!("_id" in response.data)) {
-          setError(true)
-          return
+          setError(true);
+          return;
         }
-        dispatch(setPersonId(response.data._id))
-        dispatch(setPersonData(response.data))
+        dispatch(setPersonId(response.data._id));
+        dispatch(setPersonData(response.data));
       })
-      .catch(() => setError(true))
-      .finally(() => setLoading(false));
+      .catch(() => setError(true));
   }, [currentLanguage, dispatch]);
 
   return (
     <>
-      { !error &&
+      {!error && (
         <AppWrapper>
           <LanguageSelectorWrapper>
             <LanguageSelector />
@@ -80,10 +78,8 @@ const AppComponent: React.FC<Props> = () => {
             <Section />
           </SectionWrapper>
         </AppWrapper>
-      }
-      {
-        error && <ErrorSection />
-      }
+      )}
+      {error && <ErrorSection />}
     </>
   );
 };
@@ -95,4 +91,3 @@ export default function App() {
     </Suspense>
   );
 }
-

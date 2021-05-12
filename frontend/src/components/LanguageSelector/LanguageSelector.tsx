@@ -18,7 +18,7 @@ const Selector = styled.span`
   }
 `;
 
-type Props = { 
+type Props = {
   t: any;
   i18n: any;
 };
@@ -32,7 +32,7 @@ export const LanguageSelectorComponent: React.FC<Props> = ({ t, i18n }) => {
         <Selector
           style={{ fontWeight: currentLanguage === "es-ES" ? 700 : 100 }}
           onClick={() => changeLanguage("es-ES")}
-          >
+        >
           ES
         </Selector>
         <Selector

@@ -5,7 +5,7 @@ export type placeType = {
   image: string;
 };
 
-const TYPES = ['es', 'en'] as const;
+const TYPES = ["es", "en"] as const;
 export type LanguageType = typeof TYPES[number];
 
 export type ListItemDetailsType = {
@@ -15,7 +15,7 @@ export type ListItemDetailsType = {
   loading: boolean;
   subtitle: string;
   description: string;
-}
+};
 
 export type PersonalDataType = {
   prefix: string;
@@ -82,18 +82,18 @@ export type StoreState = StoreType;
 
 export type StoreAction = {
   type: string;
-  payload: any
+  payload: any;
 };
 
 export type StoreType = {
-  personId: string,
-  personData: PersonalDataType,
-  personalData: PersonalDataType,
-  courseData: CourseDataType[],
-  educationalData: EducationDataType[],
-  experienceData: ExperienceDataType[],
-  skillData: SkillDataType[],
-  socialData: SocialDataType
+  personId: string;
+  personData: PersonalDataType;
+  personalData: PersonalDataType;
+  courseData: CourseDataType[];
+  educationalData: EducationDataType[];
+  experienceData: ExperienceDataType[];
+  skillData: SkillDataType[];
+  socialData: SocialDataType;
 };
 
 export type StoreDispatchType = (args: StoreAction) => StoreAction;

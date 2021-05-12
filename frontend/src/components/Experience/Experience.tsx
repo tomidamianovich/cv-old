@@ -55,13 +55,12 @@ export const Experience: React.FC<Props> = () => {
 
   return (
     <>
-      {experienceData && !error && 
+      {experienceData &&
+        !error &&
         experienceData.map((job: ExperienceDataType, index: number) => (
           <ExperienceDetails job={job} key={index} isCurrentJob={index === 0} />
         ))}
-      {
-        error && <ErrorSection />
-      }
+      {error && <ErrorSection />}
     </>
   );
 };

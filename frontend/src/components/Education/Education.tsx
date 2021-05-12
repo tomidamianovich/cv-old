@@ -56,13 +56,12 @@ export const Education: React.FC<Props> = () => {
 
   return (
     <>
-      {educationData && !error && 
+      {educationData &&
+        !error &&
         educationData.map((job: EducationDataType, index: number) => (
           <EducationDetails job={job} key={index} />
         ))}
-      {
-        error && <ErrorSection />
-      }
+      {error && <ErrorSection />}
     </>
   );
 };

@@ -1,6 +1,6 @@
 import React from "react";
-import Spinner from "../Spinner"
-import ErrorSection from "../ErrorSection"
+import Spinner from "../Spinner";
+import ErrorSection from "../ErrorSection";
 
 type Props = {
   children: JSX.Element;
@@ -11,9 +11,9 @@ type Props = {
 const AsyncLoading: React.FC<Props> = ({ children, isLoading, hasError }) => {
   switch (true) {
     case hasError:
-      return <ErrorSection />
+      return <ErrorSection />;
     case isLoading:
-      return <Spinner />
+      return <Spinner />;
     case !isLoading && !hasError:
       return <>{children}</>;
     default:

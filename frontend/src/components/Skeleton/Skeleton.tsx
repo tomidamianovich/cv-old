@@ -1,4 +1,4 @@
-import styled, { css, keyframes } from 'styled-components'
+import styled, { css, keyframes } from "styled-components";
 
 const animation = keyframes`
   0% {
@@ -7,19 +7,19 @@ const animation = keyframes`
   100% {
     background-position: 468px 0;
   }
-`
+`;
 
 type StyledContentLoaderProps = {
-  backgroundColor?: string
-  foregroundColor?: string
-  isLoading?: boolean
-}
+  backgroundColor?: string;
+  foregroundColor?: string;
+  isLoading?: boolean;
+};
 
 const StyledContentLoader = styled.div<StyledContentLoaderProps>(
-  ({ 
-    backgroundColor = '#e6e6e6',
-    foregroundColor = '#f0f0f0',
-    isLoading = true
+  ({
+    backgroundColor = "#e6e6e6",
+    foregroundColor = "#f0f0f0",
+    isLoading = true,
   }) => css`
     ${isLoading &&
     css`
@@ -48,7 +48,7 @@ const StyledContentLoader = styled.div<StyledContentLoaderProps>(
         }
       }
     `}
-  `,
-)
+  `
+);
 
-export default StyledContentLoader
+export default StyledContentLoader;

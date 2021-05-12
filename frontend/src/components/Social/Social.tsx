@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 import CONSTANTS from "../../utils/constants";
 import { handleRequest } from "../../utils/handlers";
 import Skeleton from "../Skeleton";
+import ErrorSection from "../ErrorSection";
 import { setSocialData } from "../../redux/actions/actions";
 import { useDispatch } from "react-redux";
 
@@ -54,62 +55,72 @@ const Item: React.FC<{
   <Skeleton isLoading={loading}>
     <ItemWrapper>
       <FontAwesomeIcon icon={icon} color={iconColor} />
-      <Link href={title} target='_blank'>{getSocialUserId(title, addSlash)}</Link>
+      <Link href={title} target="_blank">
+        {getSocialUserId(title, addSlash)}
+      </Link>
     </ItemWrapper>
   </Skeleton>
 );
 
 const Social: React.FC<Props> = () => {
   const personId: string = useSelector((state: StoreType) => state.personId);
-  const socialData: SocialDataType = useSelector((state: StoreType) => state.socialData);
+  const socialData: SocialDataType = useSelector(
+    (state: StoreType) => state.socialData
+  );
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    personId !== CONSTANTS.PLACEHOLDERS.TEXT && handleRequest(CONSTANTS.BASE_URL_API_PATHS.SOCIAL, personId)
-      .then((response) => dispatch(setSocialData(response.data)))
-      .catch(() => setError(true))
-      .finally(() => setLoading(false));
+    personId !== CONSTANTS.PLACEHOLDERS.TEXT &&
+      handleRequest(CONSTANTS.BASE_URL_API_PATHS.SOCIAL, personId)
+        .then((response) => dispatch(setSocialData(response.data)))
+        .catch(() => setError(true))
+        .finally(() => setLoading(false));
   }, [personId, dispatch]);
 
   const { instagram, facebook, telephone, mail, linkedIn } = socialData;
   return (
-    <SocialWrapper>
-      <Item
-        title={instagram}
-        icon={faInstagram}
-        iconColor="#262626"
-        addSlash={true}
-        loading={loading}
-      />
-      <Item
-        title={facebook}
-        icon={faFacebook}
-        iconColor="#4267b2"
-        addSlash={true}
-        loading={loading}
-      />
-      <Item
-        title={telephone}
-        icon={faPhone}
-        iconColor="#8bc34ad1"
-        loading={loading}
-      />
-      <Item
-        title={mail}
-        icon={faEnvelope}
-        iconColor="#be4436"
-        loading={loading}
-      />
-      <Item
-        title={linkedIn}
-        icon={faLinkedin}
-        iconColor="#008599"
-        addSlash={true}
-        loading={loading}
-      />
-    </SocialWrapper>
+    <>
+      {!error && (
+        <SocialWrapper>
+          <Item
+            title={instagram}
+            icon={faInstagram}
+            iconColor="#262626"
+            addSlash={true}
+            loading={loading}
+          />
+          <Item
+            title={facebook}
+            icon={faFacebook}
+            iconColor="#4267b2"
+            addSlash={true}
+            loading={loading}
+          />
+          <Item
+            title={telephone}
+            icon={faPhone}
+            iconColor="#8bc34ad1"
+            loading={loading}
+          />
+          <Item
+            title={mail}
+            icon={faEnvelope}
+            iconColor="#be4436"
+            loading={loading}
+          />
+          <Item
+            title={linkedIn}
+            icon={faLinkedin}
+            iconColor="#008599"
+            addSlash={true}
+            loading={loading}
+          />
+        </SocialWrapper>
+      )}
+      {error && <ErrorSection />}
+    </>
   );
 };
 

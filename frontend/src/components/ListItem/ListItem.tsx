@@ -14,7 +14,7 @@ const Wrapper = styled.div`
 const PhotoWrapper = styled(Wrapper)`
   flex: 20%;
   justify-content: center;
-  div .image-container{
+  div .image-container {
     width: 150px;
     height: 150px;
     border-radius: 50%;
@@ -28,11 +28,11 @@ const PhotoWrapper = styled(Wrapper)`
     }
   }
 `;
-  
+
 const InfoWrapper = styled(Wrapper)`
   flex: 80%;
   display: block;
-  @media (max-width:801px)  {
+  @media (max-width: 801px) {
     text-align: center;
   }
 `;
@@ -43,35 +43,34 @@ const InfoValue = styled.p`
   color: #554949;
   font-weight: 300;
 `;
-  
-  const InfoTitle = styled(InfoValue)`
+
+const InfoTitle = styled(InfoValue)`
   font-size: 1.2rem;
   font-weight: 500;
 `;
 
-
-type Props = ListItemDetailsType
+type Props = ListItemDetailsType;
 
 export const ListItem: React.FC<Props> = ({
   imageName,
-  imageValue, 
+  imageValue,
   title,
   subtitle,
   loading,
-  description
+  description,
 }) => {
-  const [showImage, setShowImage] = useState(false)
+  const [showImage, setShowImage] = useState(false);
   return (
     <Wrapper>
       <PhotoWrapper>
         <Skeleton isLoading={loading}>
           <div className="image-container">
             <img
-              style={!showImage ? { visibility: 'hidden' } : {}}
-              src={process.env.PUBLIC_URL + '/images/places/' + imageValue } 
+              style={!showImage ? { visibility: "hidden" } : {}}
+              src={process.env.PUBLIC_URL + "/images/places/" + imageValue}
               alt={imageName}
               onLoad={() => setShowImage(true)}
-              /> 
+            />
           </div>
         </Skeleton>
       </PhotoWrapper>
