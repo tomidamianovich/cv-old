@@ -14,5 +14,6 @@
     "education": "Educacion",
     "course": "Cursos",
     "skill": "Skills"
-  }
+  },
+  "error": "Un error ocurrio al intentar obtener esta información."
 }

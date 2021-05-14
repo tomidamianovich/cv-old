@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useTranslation } from "react-i18next";
+import { withTranslation } from "react-i18next";
 
 const Wrapper = styled.div`
   display: flex;
@@ -15,21 +15,16 @@ const Wrapper = styled.div`
   font-weight: 200;
 `;
 
-type Props = {};
+type Props = {
+  t: any;
+};
 
-const Navbar: React.FC<Props> = () => {
-  const { i18n } = useTranslation();
-  const currentLanguage = i18n.language;
+const ErrorSection: React.FC<Props> = ({ t }) => {
   return (
-    <Wrapper>
-      <span>
-        {currentLanguage === "es-ES"
-          ? "Un error ocurrio al intentar obtener esta información."
-          : "An error occurred while trying to retrieve the requested data."}
-      </span>
-      <span></span>
+    <Wrapper data-testid="error-wrapper">
+      <span>{t("error")}</span>
     </Wrapper>
   );
 };
 
-export default Navbar;
+export default withTranslation()(ErrorSection);

@@ -63,7 +63,7 @@ const withSectionItemHOC = <P extends object>(
   }: WrappedComponentProps) => {
     const [visible, setVisibility] = useState(false);
     return (
-      <Wrapper onClick={() => setVisibility(!visible)}>
+      <Wrapper onClick={() => setVisibility(!visible)} data-testid="hoc-wrapper">
         <TitleWrapper>
           <SectionTitle variant={props.variant}>
             <FontAwesomeIcon icon={props.icon} />

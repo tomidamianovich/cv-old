@@ -21,7 +21,7 @@ type Props = {
 
 export const SectionComponent: React.FC<Props> = ({ t, i18n }) => {
   return (
-    <div>
+    <div data-testid="section-container">
       <Personal
         title={t("sections.personalData.name")}
         variant={"#f3ca0099"}

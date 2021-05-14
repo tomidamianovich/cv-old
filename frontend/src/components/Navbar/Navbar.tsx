@@ -64,7 +64,7 @@ const Navbar: React.FC<Props> = () => {
   const { prefix, name, lastname, description, experience } = personalData;
   const isLoadingPersonData = name === CONSTANTS.PLACEHOLDERS.TEXT;
   return (
-    <Wrapper>
+    <Wrapper data-testid="navbar-container">
       <PhotoWrapper>
         <Skeleton isLoading={isLoadingPersonData}>
           <img
@@ -73,7 +73,7 @@ const Navbar: React.FC<Props> = () => {
           />
         </Skeleton>
       </PhotoWrapper>
-      <InfoWrapper>
+      <InfoWrapper data-testid="info-wrapper">
         <Skeleton isLoading={isLoadingPersonData}>
           <InfoTitle>
             {prefix} {lastname} {name}

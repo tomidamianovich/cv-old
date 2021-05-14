@@ -34,7 +34,7 @@ type Props = {
   t: any;
 };
 
-const Personal: React.FC<Props> = ({ t }) => {
+export const Personal: React.FC<Props> = ({ t }) => {
   const personalData: PersonalDataType = useSelector(
     (state: StoreType) => state.personData
   );
@@ -52,14 +52,14 @@ const Personal: React.FC<Props> = ({ t }) => {
     };
 
     const ItemWithBody: React.FC<ItemBodyProps> = ({ title, value }) => (
-      <Item>
+      <Item data-testid={"personal-data-value"}>
         <span>{title}: </span>
         <span>{value}</span>
       </Item>
     );
 
     return (
-      <ItemContainer>
+      <ItemContainer data-testid="personal-data-container">
         <ItemWithBody
           title={t("sections.personalData.data.name")}
           value={`${name} ${lastname}`}

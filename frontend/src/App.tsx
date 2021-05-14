@@ -42,7 +42,7 @@ const SectionWrapper = styled(Wrapper)`
 
 type Props = {};
 
-const AppComponent: React.FC<Props> = () => {
+export const AppComponent: React.FC<Props> = () => {
   const [error, setError] = useState<boolean>(false);
   const { i18n } = useTranslation();
   const dispatch = useDispatch();
@@ -66,8 +66,9 @@ const AppComponent: React.FC<Props> = () => {
 
   return (
     <>
+      <AppWrapper data-testid="app-wrapper"></AppWrapper>    
       {!error && (
-        <AppWrapper>
+        <AppWrapper data-testid="app-wrapper">
           <LanguageSelectorWrapper>
             <LanguageSelector />
           </LanguageSelectorWrapper>

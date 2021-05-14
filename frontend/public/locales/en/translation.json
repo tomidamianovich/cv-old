@@ -14,5 +14,6 @@
     "education": "Education",
     "course": "Courses",
     "skill": "Skills"
-  }
+  },
+  "error": "An error occurred while trying to retrieve the requested data."
 }

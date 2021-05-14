@@ -28,7 +28,7 @@ export const LanguageSelectorComponent: React.FC<Props> = ({ t, i18n }) => {
   const currentLanguage = i18n.language;
   return (
     <Suspense fallback={<Spinner />}>
-      <Wrapper>
+      <Wrapper data-testid="language-selector-wrapper">
         <Selector
           style={{ fontWeight: currentLanguage === "es-ES" ? 700 : 100 }}
           onClick={() => changeLanguage("es-ES")}
@@ -36,6 +36,7 @@ export const LanguageSelectorComponent: React.FC<Props> = ({ t, i18n }) => {
           ES
         </Selector>
         <Selector
+          data-testid="en-selector"
           style={{ fontWeight: currentLanguage === "en" ? 700 : 100 }}
           onClick={() => changeLanguage("en")}
         >

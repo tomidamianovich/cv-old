@@ -36,9 +36,10 @@ export const Course: React.FC<Props> = () => {
 
   type CourseDetailsProps = {
     course: CourseDataType;
+    index: number;
   };
 
-  const CourseDetails: React.FC<CourseDetailsProps> = ({ course }) => {
+  const CourseDetails: React.FC<CourseDetailsProps> = ({ course, index }) => {
     const { name, description, date, place } = course;
     return (
       <ListItem
@@ -56,9 +57,11 @@ export const Course: React.FC<Props> = () => {
     <>
       {courseData &&
         !error &&
-        courseData.map((course: CourseDataType, index: number) => (
-          <CourseDetails course={course} key={index} />
-        ))}
+        <div data-testid="courses-container">
+          {courseData.map((course: CourseDataType, index: number) => (
+            <CourseDetails course={course} index={index} key={index} data-testid={"test-1"}  />
+          ))}
+        </div>}
       {error && <ErrorSection />}
     </>
   );

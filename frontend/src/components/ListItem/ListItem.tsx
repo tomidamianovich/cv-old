@@ -18,8 +18,7 @@ const PhotoWrapper = styled(Wrapper)`
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 6px 2px rgb(0 0 0 / 42%);
+    box-shadow: rgb(195 195 195) 0px 0px 6px 2px;
     img {
       border-radius: 50%;
       width: 150px;
@@ -61,7 +60,7 @@ export const ListItem: React.FC<Props> = ({
 }) => {
   const [showImage, setShowImage] = useState(false);
   return (
-    <Wrapper>
+    <Wrapper data-testid="education-container-item">
       <PhotoWrapper>
         <Skeleton isLoading={loading}>
           <div className="image-container">
@@ -74,7 +73,7 @@ export const ListItem: React.FC<Props> = ({
           </div>
         </Skeleton>
       </PhotoWrapper>
-      <InfoWrapper>
+      <InfoWrapper data-testid="info-wrapper">
         <Skeleton isLoading={loading}>
           <InfoTitle>{title}</InfoTitle>
         </Skeleton>

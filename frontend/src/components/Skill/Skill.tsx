@@ -119,7 +119,7 @@ export const Skill: React.FC<Props> = () => {
   const SkillProgress: React.FC<SkillDetailsProps> = ({ skill }) => {
     const { name, percentage } = skill;
     return (
-      <ProgressCircle value={percentage}>
+      <ProgressCircle value={percentage} data-testid="skill-item">
         <div className="box">
           <div className="percent">
             <svg>
@@ -127,13 +127,13 @@ export const Skill: React.FC<Props> = () => {
               <circle cx="70" cy="70" r="70"></circle>
             </svg>
             <div className="num">
-              <h2>
+              <h2 data-testid="skill-percentage">
                 {percentage}
                 <span>%</span>
               </h2>
             </div>
           </div>
-          <h2 className="text">{name}</h2>
+          <h2 className="text" data-testid="skill-name">{name}</h2>
         </div>
       </ProgressCircle>
     );
@@ -141,7 +141,7 @@ export const Skill: React.FC<Props> = () => {
 
   return (
     <AsyncLoading isLoading={loading} hasError={error}>
-      <ItemContainer>
+      <ItemContainer data-testid="skill-container">
         {skillData &&
           skillData.map((skill: SkillDataType, index: number) => (
             <SkillProgress skill={skill} key={index} />

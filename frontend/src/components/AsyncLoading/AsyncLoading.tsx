@@ -13,7 +13,7 @@ const AsyncLoading: React.FC<Props> = ({ children, isLoading, hasError }) => {
     case hasError:
       return <ErrorSection />;
     case isLoading:
-      return <Spinner />;
+      return <Spinner data-testid="loading-spinner" />;
     case !isLoading && !hasError:
       return <>{children}</>;
     default:

@@ -53,7 +53,7 @@ const Item: React.FC<{
   icon: any;
 }> = ({ title, icon, iconColor, addSlash = false, loading }) => (
   <Skeleton isLoading={loading}>
-    <ItemWrapper>
+    <ItemWrapper data-testid="social-item">
       <FontAwesomeIcon icon={icon} color={iconColor} />
       <Link href={title} target="_blank">
         {getSocialUserId(title, addSlash)}
@@ -83,7 +83,7 @@ const Social: React.FC<Props> = () => {
   return (
     <>
       {!error && (
-        <SocialWrapper>
+        <SocialWrapper data-testid="social-container">
           <Item
             title={instagram}
             icon={faInstagram}
