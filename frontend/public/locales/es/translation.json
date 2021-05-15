@@ -15,5 +15,6 @@
     "course": "Cursos",
     "skill": "Skills"
   },
-  "error": "Un error ocurrio al intentar obtener esta información."
+  "error": "Un error ocurrio al intentar obtener esta información.",
+  "now": "Actulidad"
 }

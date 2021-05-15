@@ -13,7 +13,9 @@ export const getFormattedDate = (
 ) => {
   const { MONTHS } = constants;
   const d = new Date(date);
-  const year = d.getFullYear();
-  const monthName = MONTHS[language][d.getMonth()];
+  if (isNaN(d.getTime())) return new Date()
+  const year = d.getUTCFullYear();
+  debugger
+  const monthName = MONTHS[language][d.getUTCMonth()];
   return monthName + " " + year;
 };

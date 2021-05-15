@@ -22,6 +22,7 @@ export const Education: React.FC<Props> = () => {
   useEffect(() => {
     if (
       educationData &&
+      !!educationData.length &&
       educationData[0].person_id === personId &&
       educationData[0].degree !== CONSTANTS.PLACEHOLDERS.TEXT
     ) {

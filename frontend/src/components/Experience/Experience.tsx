@@ -7,10 +7,13 @@ import ErrorSection from "../ErrorSection";
 import { setExperienceData } from "../../redux/actions/actions";
 import { useSelector, useDispatch } from "react-redux";
 import ListItem from "../ListItem";
+import { withTranslation } from "react-i18next";
 
-type Props = {};
+type Props = {
+  t: any;
+};
 
-export const Experience: React.FC<Props> = () => {
+export const Experience: React.FC<Props> = ({ t }) => {
   const dispatch = useDispatch();
   const personId: string = useSelector((state: StoreType) => state.personId);
   const experienceData: ExperienceDataType[] = useSelector(
@@ -45,7 +48,7 @@ export const Experience: React.FC<Props> = () => {
         imageName={place.name}
         title={`${jobTitle} (${jobDescription}) `}
         subtitle={`${getFormattedDate(startDate)} - ${
-          isCurrentJob ? "Actualidad" : getFormattedDate(endDate)
+          isCurrentJob ? t("now") : getFormattedDate(endDate)
         }`}
         description={place.name}
         loading={loading}
@@ -65,4 +68,4 @@ export const Experience: React.FC<Props> = () => {
   );
 };
 
-export default withSectionItemHOC(Experience);
+export default withTranslation()(withSectionItemHOC(Experience));

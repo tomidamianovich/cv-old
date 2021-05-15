@@ -15,5 +15,6 @@
     "course": "Courses",
     "skill": "Skills"
   },
-  "error": "An error occurred while trying to retrieve the requested data."
+  "error": "An error occurred while trying to retrieve the requested data.",
+  "now": "Present"
 }
