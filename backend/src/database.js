@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
 
-const LOCAL_URI = "mongodb://localhost/mern"
-
-mongoose.connect(process.env.URI || LOCAL_URI, {
+mongoose.connect(process.env.URI, {
 	useNewUrlParser: true,
 	useCreateIndex: true,
 	useUnifiedTopology: true,

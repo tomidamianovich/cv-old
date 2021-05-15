@@ -43,7 +43,7 @@ const Link = styled.a`
 type Props = {};
 
 const getSocialUserId = (path: string, addSlash: boolean) =>
-  `${addSlash ? "/" : ""}${path.split("/").pop()}`;
+  `${addSlash ? "/" : ""}${path.split("/?")[0]?.split("/").pop()}`;
 
 const Item: React.FC<{
   title: string;

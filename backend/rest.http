@@ -1,4 +1,4 @@
-POST http://localhost:8000/api/skill  HTTP/1.1
+POST https://glacial-mesa-61165.herokuapp.com/api/skill  HTTP/1.1
 content-type: application/json
 
 {
@@ -21,7 +21,7 @@ DELETE https://glacial-mesa-61165.herokuapp.com/api/skill/60927d23c4dbd94394299d
 DELETE  https://glacial-mesa-61165.herokuapp.com/api/place/60933a6a2290450004373d13
 
 ### 
-PUT http://localhost:8000/api/place/6092ade31809fe098bc6821b HTTP/1.1
+PUT https://glacial-mesa-61165.herokuapp.com/api/place/6092ade31809fe098bc6821b HTTP/1.1
 content-type: application/json
 
 {
@@ -31,11 +31,11 @@ content-type: application/json
 
 ###
 
-DELETE http://localhost:8000/api/education/60988846857b462e020988a7
+DELETE https://glacial-mesa-61165.herokuapp.com/api/education/60988846857b462e020988a7
 
 ###
 
-POST   http://localhost:8000/api/course HTTP/1.1
+POST   https://glacial-mesa-61165.herokuapp.com/api/course HTTP/1.1
 content-type: application/json
 
 {
@@ -53,11 +53,11 @@ DELETE https://glacial-mesa-61165.herokuapp.com/api/course/609316b72290450004373
 ###
 
 
-POST   http://localhost:8000/api/experience HTTP/1.1
+POST   https://glacial-mesa-61165.herokuapp.com/api/experience HTTP/1.1
 content-type: application/json
 
 {
- "jobTitle": "UI Developer",
+ "jobTitle": "UI Developer12312312312312",
 "jobDescription": "HTML, CSS, JS, JQUERY, PHP",
 "startDate": "2016-01-01T00:00:00.244Z",
 "endDate": "2017-05-01T00:00:00.244Z",
@@ -67,26 +67,26 @@ content-type: application/json
 
 ###
 
-PUT   http://localhost:8000/api/experience/608de8728bfc2a5c5847ede6 HTTP/1.1
+PUT   https://glacial-mesa-61165.herokuapp.com/api/social/609887e7857b462e020988a6 HTTP/1.1
 content-type: application/json
 
 {
-  "jobTitle": "Senior Front End Engineer",
-  "jobDescription": "REACT, STYLED COMPONENTS, JEST, NODE, BEM, STORYBOOK",
-  "startDate": "2021-05-17T00:00:00.244Z",
-  "endDate": "2021-05-17T00:00:00.244Z",
-  "person_id": "608ddef77cbd8c5258d93da6",
-  "place_id": "6092ad9f1809fe098bc68215"
+  "instagram": "www.instagram.com/tomidamianovich",
+  "facebook": "www.facebook.com/tomasdamianovich",
+  "telephone": "+542216261952",
+  "mail": "tomasdamianovich@gmail.com",
+  "linkedIn": "www.linkedin.com/in/tomasdr/?locale=en_US",
+  "person_id": "6098813d302c510a5dbfb29c"
 }
 
 ### 
 
-DELETE   http://localhost:8000/api/experience/6084dbdc6031042cbd99b820 HTTP/1.1
+DELETE   https://glacial-mesa-61165.herokuapp.com/api/experience/60a0182b28690b0004941124 HTTP/1.1
 content-type: application/json
 
 
 ###
-POST  http://localhost:8000/api/place HTTP/1.1
+POST  https://glacial-mesa-61165.herokuapp.com/api/place HTTP/1.1
 content-type: application/json
 
 {

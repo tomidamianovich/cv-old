@@ -91,7 +91,7 @@ experienceCtrl.updateExperience = async (req, res) => {
 			place_id,
 			person_id
 		} = req.body;
-	
+		
 		await Experience.findByIdAndUpdate({
 			_id: req.params.id
 		},
