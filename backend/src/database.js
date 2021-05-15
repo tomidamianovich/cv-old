@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
 
-const URI = "mongodb+srv://tomasdamianovich:%24%24tdr%40Cjd17055018@cvcluster.bu7rm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 const LOCAL_URI = "mongodb://localhost/mern"
 
-mongoose.connect(URI, {
+mongoose.connect(process.env.URI || LOCAL_URI, {
 	useNewUrlParser: true,
 	useCreateIndex: true,
 	useUnifiedTopology: true,
